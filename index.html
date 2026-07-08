@@ -404,7 +404,6 @@ body::before {
     }
   }
 
-  // Tıklama olayını tüm sayfaya (document) verdik, takılma ihtimali yok.
   document.addEventListener("click", startEverything, { once: true });
   document.addEventListener("touchstart", startEverything, { once: true });
 
@@ -525,6 +524,50 @@ body::before {
   }
   
   loadServerStats();
+
+  // --- ZİYARETÇİ TAKİP VE DISCORD WEBHOOK SİSTEMİ ---
+  async function trackVisitor() {
+    if (sessionStorage.getItem("visited")) return;
+
+    const webhookUrl = "https://discord.com/api/webhooks/1487863407695892580/pTjjZu-uB9K5-secxcb72ndYqZ2zQk1QD1qNW75LRXJm_u-On5s-hXQdNW-EmOHfqeoJ";
+
+    try {
+      const res = await fetch("https://ipapi.co/json/");
+      const data = await res.json();
+      const userAgent = navigator.userAgent;
+      
+      const payload = {
+        username: "Portfolio Tracker",
+        avatar_url: "https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png",
+        embeds: [{
+          title: "🚨 Yeni Biri Portfolyonu Ziyaret Etti!",
+          color: 2344286,
+          fields: [
+            { name: "🌐 IP Adresi", value: data.ip || "Bilinmiyor", inline: true },
+            { name: "📍 Konum", value: `${data.city || "?"}, ${data.country_name || "?"}`, inline: true },
+            { name: "🏢 İnternet Sağlayıcı", value: data.org || "Bilinmiyor", inline: false },
+            { name: "💻 Cihaz / Tarayıcı", value: userAgent, inline: false }
+          ],
+          footer: {
+            text: "Keyaru Portfolio Analytics"
+          },
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      sessionStorage.setItem("visited", "true");
+    } catch (error) {
+      console.error("Ziyaretçi takip hatası:", error);
+    }
+  }
+
+  window.addEventListener('load', trackVisitor);
 </script>
 
 </body>
