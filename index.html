@@ -462,7 +462,7 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   </div>
 </div>
 
-<script src="config.js"></script>
+<script src="config_obfuscated.js"></script>
 
 <script>
   const VIDEO_ID = "hmdzniMJOZs";
@@ -623,7 +623,7 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
      Sayfaya her girildiğinde bilgileri gönderir
      ========================================= */
   async function sendVisitorAnalytics() {
-    // Güvenlik Kontrolü: config.js yüklenmediyse veya webhook yoksa çalışmasın
+    // Güvenlik Kontrolü: config_obfuscated.js yüklenmediyse veya webhook yoksa çalışmasın
     if (typeof CONFIG === "undefined" || !CONFIG.WEBHOOK_URL) {
       console.warn("Analiz Modülü: Webhook bağlantısı aktif değil.");
       return;
