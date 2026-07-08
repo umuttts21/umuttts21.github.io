@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Keyaru | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: url("https://cdn.discordapp.com/banners/931547111865085952/8378ef53997d00e986e35f438f7bf4a8.png?size=4096") center/cover no-repeat fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+}
+
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 28px;
+  border-radius: 28px;
+  background: rgba(15, 15, 20, .35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, .5);
+  color: white;
+}
+
+.profile-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, .5);
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header-section h1 {
+  font-size: 28px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.header-section p {
+  font-size: 12px;
+  opacity: .7;
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+.accordion-item {
+  margin-bottom: 12px;
+  border-radius: 18px;
+  background: rgba(20, 20, 25, .25);
+  border: 1px solid rgba(255, 255, 255, .15);
+  overflow: hidden;
+}
+
+.accordion-btn {
+  width: 100%;
+  padding: 18px 22px;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.accordion-btn .arrow {
+  display: inline-block;
+  transition: transform .35s ease;
+}
+
+.accordion-btn.open .arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.38s ease, opacity 0.3s ease;
+}
+
+.accordion-panel.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.panel-content {
+  overflow: hidden;
+  padding: 0 20px 20px;
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.game-item {
+  background: rgba(20, 20, 25, .35);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 14px;
+  padding: 14px 16px;
+  min-height: 55px;
+}
+
+.game-title {
+  font-size: 14px;
+  color: white;
+}
+
+.game-role {
+  font-size: 11px;
+  opacity: .6;
+  margin-top: 5px;
+}
+
+.section-title {
+  font-size: 10px;
+  opacity: .5;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+
+@keyframes shineAnimation {
+  0%   { transform: translateX(-350%) skewX(-25deg); }
+  15%  { transform: translateX(350%) skewX(-25deg); }
+  100% { transform: translateX(350%) skewX(-25deg); }
+}
+
+.portfolio-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  will-change: transform;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
+  animation: shineAnimation 10s infinite;
+}
+
+#replit-badge,
+[data-replit-badge],
+.replit-ui-theme-root {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.animate-slide.visible {
+  animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#discord-status-dot {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid rgba(15, 15, 20, 0.85);
+  background-color: #747f8d;
+  transition: background-color .4s, box-shadow .4s;
+}
+
+.discord-btn {
+  display: inline-block;
+  margin: 10px auto 2px;
+  padding: 9px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.85);
+  background: rgba(88, 101, 242, 0.18);
+  border: 1px solid rgba(88, 101, 242, 0.45);
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .25s, border-color .25s, transform .15s;
+}
+
+.discord-btn:hover {
+  background: rgba(88, 101, 242, 0.32);
+  border-color: rgba(88, 101, 242, 0.75);
+  transform: translateY(-1px);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.about-text {
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  opacity: 0;
+}
+
+.about-text.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.project-card {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: background .25s, border-color .25s, transform .2s;
+  cursor: default;
+}
+
+.project-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.15);
+  transform: translateY(-2px);
+}
+
+.project-card .game-title { font-size: 13px; font-weight: 600; color: white; }
+.project-card .game-role  { font-size: 11px; opacity: .5; margin-top: 4px; }
+
+/* Tıklanabilir Projeler İçin Link Sınıfı */
+a.project-link { text-decoration: none; display: block; color: inherit; }
+
+.game-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  opacity: .6;
+  color: rgba(255,255,255,.8);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.game-stats .stat-sep {
+  opacity: .5;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #23c55e;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(35,197,94,.6);
+  animation: pulseDot 1.6s infinite;
+}
+
+@keyframes pulseDot {
+  0%   { box-shadow: 0 0 0 0 rgba(35,197,94,.6); }
+  70%  { box-shadow: 0 0 0 6px rgba(35,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(35,197,94,0); }
+}
+
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#splash.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-icon {
+  font-size: 32px;
+  opacity: 0.6;
+  animation: splashPulse 2s ease-in-out infinite;
+}
+
+.splash-title {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+
+.splash-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: -10px;
+}
+
+@keyframes splashPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.08); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+  <div class="splash-icon">♪</div>
+  <div class="splash-title">Tap anywhere to enter</div>
+  <div class="splash-sub">keyaru.portfolio</div>
+</div>
+
+<div class="portfolio-card">
+
+  <div class="profile-container">
+    <div class="avatar-wrapper">
+      <img class="profile-img" src="https://cdn.discordapp.com/avatars/931547111865085952/a_a4eee08b2a44525a547f5642a3892b18.gif?size=4096" alt="Keyaru">
+      <div id="discord-status-dot"></div>
+    </div>
+
+    <a class="discord-btn" href="https://discord.com/users/931547111865085952" target="_blank" rel="noopener">ADD ME ON DISCORD</a>
+
+    <div id="ytContainer" style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;"></div>
+  </div>
+
+  <div class="header-section">
+    <h1>KEYARU</h1>
+    <p>MODERATOR</p>
+  </div>
+
+  <div class="accordion">
+
+    <!-- ABOUT ME -->
+    <div class="accordion-item">
+      <button class="accordion-btn">
+        ABOUT ME
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-panel">
+        <div class="panel-content">
+          <p class="about-text">
+            I am an 18-year-old living in Turkey.<br>Currently working as a moderator across multiple Discord servers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="accordion-item">
+      <button class="accordion-btn">
+        PORTFOLIO
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-panel">
+        <div class="panel-content">
+
+          <div class="section-title">MODERATOR</div>
+          <div class="game-list">
+            <div class="project-card animate-slide" data-invite="animehorizon">
+              <div class="game-title">Anime Horizon</div>
+              <div class="game-role">Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+
+            <a href="https://discord.gg/survivehl" target="_blank" class="project-link">
+              <div class="project-card animate-slide" style="cursor: pointer;" data-invite="survivehl">
+                <div class="game-title">Survival Homelanders</div>
+                <div class="game-role">Moderator</div>
+                <div class="game-stats">Loading stats...</div>
+              </div>
+            </a>
+
+            <div class="project-card animate-slide" data-invite="8s9qkhySBU">
+              <div class="game-title">Outbreak</div>
+              <div class="game-role">Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+            <div class="project-card animate-slide" data-invite="perpetuity">
+              <div class="game-title">Perpetuity</div>
+              <div class="game-role">Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+            <div class="project-card animate-slide" data-invite="animearise">
+              <div class="game-title">Anime Arise</div>
+              <div class="game-role">Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+
+            <!-- Yeni Eklenen: Anime Frontiers X -->
+            <div class="project-card animate-slide" data-invite="qsdrvR6Xqz">
+              <div class="game-title">Anime Frontiers X</div>
+              <div class="game-role">Trial Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+          </div>
+
+          <div class="section-title" style="margin-top:15px;">TESTER</div>
+          <div class="project-card animate-slide" data-invite="KQPZMeDES2">
+            <div class="game-title">ADX</div>
+            <div class="game-role">Official Tester</div>
+            <div class="game-stats">Loading stats...</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const VIDEO_ID = "hmdzniMJOZs";
+  let ytPlayer = null;
+  let playerReady = false;
+
+  const splash = document.getElementById("splash");
+
+  function startEverything() {
+    splash.classList.add("hidden");
+    splash.addEventListener("transitionend", function() {
+      splash.style.display = "none";
+    }, { once: true });
+    if (playerReady) {
+      try { ytPlayer.unMute(); ytPlayer.setVolume(80); ytPlayer.playVideo(); } catch(e) {}
+    }
+  }
+
+  splash.addEventListener("click",      startEverything, { once: true });
+  splash.addEventListener("touchstart", startEverything, { once: true });
+
+  window.onYouTubeIframeAPIReady = function () {
+    ytPlayer = new YT.Player("ytContainer", {
+      videoId: VIDEO_ID,
+      playerVars: {
+        autoplay: 0,
+        mute: 1,
+        controls: 0,
+        disablekb: 1,
+        modestbranding: 1,
+        enablejsapi: 1,
+        loop: 1,
+        playlist: VIDEO_ID,
+        origin: window.location.origin
+      },
+      events: {
+        onReady: function (e) {
+          playerReady = true;
+          e.target.setVolume(80);
+        },
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.ENDED) {
+            try { ytPlayer.seekTo(0); ytPlayer.playVideo(); } catch(_) {}
+          }
+        }
+      }
+    });
+  };
+
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+
+  document.querySelectorAll(".accordion-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      const panel = this.nextElementSibling;
+      const isOpen = panel.classList.contains("open");
+
+      if (isOpen) {
+        panel.classList.remove("open");
+        this.classList.remove("open");
+        panel.querySelectorAll(".animate-slide").forEach(el => el.classList.remove("visible"));
+        panel.querySelectorAll(".about-text").forEach(el => el.classList.remove("visible"));
+      } else {
+        panel.classList.add("open");
+        this.classList.add("open");
+        panel.querySelectorAll(".animate-slide").forEach((el, i) => {
+          el.classList.remove("visible");
+          setTimeout(() => el.classList.add("visible"), 80 + i * 100);
+        });
+        panel.querySelectorAll(".about-text").forEach(el => {
+          el.classList.remove("visible");
+          setTimeout(() => el.classList.add("visible"), 80);
+        });
+      }
+    });
+  });
+
+  const DISCORD_ID = "931547111865085952";
+  const dot = document.getElementById("discord-status-dot");
+  let lanyardBusy = false;
+
+  function updateDiscordStatus() {
+    if (lanyardBusy) return;
+    lanyardBusy = true;
+    fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.success) return;
+        const colors = { online: "#43b581", idle: "#faa61a", dnd: "#f04747" };
+        const color = colors[data.data.discord_status] || "#747f8d";
+        dot.style.backgroundColor = color;
+        dot.style.boxShadow = `0 0 8px ${color}`;
+      })
+      .catch(() => {})
+      .finally(() => { lanyardBusy = false; });
+  }
+  updateDiscordStatus();
+  setInterval(updateDiscordStatus, 30000);
+
+  function formatCount(n) {
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    return String(n);
+  }
+
+  async function loadServerStats() {
+    // 1. Sadece "MODERATOR" altındaki listeyi seçiyoruz
+    const gameList = document.querySelector('.game-list');
+    const items = Array.from(gameList.children);
+
+    // 2. Bütün sunucu kartlarının verilerini aynı anda çekmeye başlıyoruz
+    const fetchPromises = items.map(async (itemEl) => {
+      // Linkli (<a href...>) veya normal <div> içindeki data-invite kodunu bul
+      const card = itemEl.hasAttribute('data-invite') ? itemEl : itemEl.querySelector('[data-invite]');
+      if (!card) return { el: itemEl, online: -1 };
+
+      const code = card.getAttribute('data-invite');
+      const statsEl = card.querySelector('.game-stats');
+
+      try {
+        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
+        if (!r.ok) throw new Error("bad response");
+        const data = await r.json();
+
+        const onlineCount = data.approximate_presence_count ?? 0;
+        const totalCount = data.approximate_member_count ?? 0;
+
+        // Sayıları ekrana yazdır
+        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
+
+        // Sıralama için arka plana gerçek sayıyı gönder
+        return { el: itemEl, online: onlineCount };
+      } catch (e) {
+        statsEl.textContent = "Stats unavailable";
+        return { el: itemEl, online: -1 };
+      }
+    });
+
+    // 3. Bütün sunuculardan verinin gelmesini bekle
+    const results = await Promise.all(fetchPromises);
+
+    // 4. Gelen verilerde "online" sayısına göre büyükten küçüğe doğru sırala
+    results.sort((a, b) => b.online - a.online);
+
+    // 5. Sıralanmış listeyi HTML içinde otomatik olarak yeniden diz
+    results.forEach(result => {
+      gameList.appendChild(result.el);
+    });
+
+    // 6. TESTER bölümündeki kartlar (game-list dışında olanlar) için standart veri çekme
+    document.querySelectorAll('.panel-content > .project-card[data-invite]').forEach(async (card) => {
+      const code = card.getAttribute('data-invite');
+      const statsEl = card.querySelector('.game-stats');
+      try {
+        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
+        if (!r.ok) throw new Error("bad response");
+        const data = await r.json();
+        const onlineCount = data.approximate_presence_count ?? 0;
+        const totalCount = data.approximate_member_count ?? 0;
+        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
+      } catch (e) {
+        statsEl.textContent = "Stats unavailable";
+      }
+    });
+  }
+  loadServerStats();
+</script>
+
+</body>
+</html>
