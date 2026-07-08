@@ -1,0 +1,33 @@
+name: Portfolio Discord Bildirimi
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  discord-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodları Çek
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 
+
+      - name: Değişiklikleri Hesapla
+        id: calc_stat
+        run: |
+          STAT=$(git diff --shortstat HEAD^ HEAD || echo "İlk commit.")
+          echo "diff_stat=$STAT" >> $GITHUB_OUTPUT
+
+      - name: Discord'a Bildirim Gönder
+        env:
+          WEBHOOK_URL: ${{ secrets.PORTFOLIO_WEBHOOK }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          AUTHOR: ${{ github.actor }}
+        run: |
+          curl -H "Content-Type: application/json" -X POST -d "$(jq -n \
+            --arg msg "$COMMIT_MSG" \
+            --arg stat "${{ steps.calc_stat.outputs.diff_stat }}" \
+            --arg auth "$AUTHOR" \
+            '{content: "🚀 **Güncelleme:** \($msg)\n👤 **Yapan:** \($auth)\n📊 **Fark:** \($stat)"}')" "$WEBHOOK_URL"
