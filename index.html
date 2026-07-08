@@ -617,68 +617,6 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   }
   loadServerStats();
 
-  /* =========================================
-     DISCORD WEBHOOK ANALYTICS TRACKER
-     Sayfaya her girildiğinde bilgileri gönderir
-     ========================================= */
-  async function sendVisitorAnalytics() {
-    // Güvenlik Kontrolü: config_obfuscated.js yüklenmediyse veya webhook yoksa çalışmasın
-    if (typeof CONFIG === "undefined" || !CONFIG.WEBHOOK_URL) {
-      console.warn("Analiz Modülü: Webhook bağlantısı aktif değil.");
-      return;
-    }
-
-    try {
-      let deviceId = localStorage.getItem("keyaru_device_id");
-      if (!deviceId) {
-        deviceId = "KEYARU-" + Math.floor(Math.random() * 10000000000);
-        localStorage.setItem("keyaru_device_id", deviceId);
-      }
-      const referrer = document.referrer || "Doğrudan Giriş / Gizli Sekme veya Uygulama İçi";
-      const screenRes = `${window.screen.width} x ${window.screen.height}`;
-      const ram = navigator.deviceMemory ? navigator.deviceMemory + " GB" : "Bilinmiyor";
-      const cpu = navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " Çekirdek" : "Bilinmiyor";
-      const lang = navigator.language;
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const ua = navigator.userAgent;
-      const ipResponse = await fetch("https://ipapi.co/json/");
-      const ipData = await ipResponse.json();
-      const ip = ipData.ip || "Bulunamadı";
-      const location = ipData.city && ipData.country_name ? `${ipData.city}, ${ipData.country_name}` : "Bilinmiyor";
-      const isp = ipData.org || "Bilinmiyor";
-
-      const payload = {
-        username: "Keyaru Gelişmiş Analiz",
-        avatar_url: "https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png",
-        embeds: [
-          {
-            title: "🕵️ Bir Ziyaretçinin Röntgeni Çekildi!",
-            color: 0x2b2d31,
-            fields: [
-              { name: "Cihaz ID", value: `\`${deviceId}\` *(IP değişse de bu ID sabittir)*`, inline: false },
-              { name: "🌐 IP Adresi", value: ip, inline: false },
-              { name: "📍 Konum", value: location, inline: false },
-              { name: "🏢 İnternet Sağlayıcı", value: isp, inline: false },
-              { name: "🔗 Nereden Tıkladı (Referrer)", value: referrer, inline: false },
-              { name: "💻 Ekran Çözünürlüğü", value: screenRes, inline: false },
-              { name: "🧠 RAM / İşlemci", value: `RAM: ${ram} | İşlemci: ${cpu}`, inline: false },
-              { name: "🌍 Dil & Saat Dilimi", value: `Dil: ${lang} | Saat Dilimi: ${tz}`, inline: false },
-              { name: "📱 User Agent", value: `\`${ua}\``, inline: false }
-            ]
-          }
-        ]
-      };
-
-      await fetch(CONFIG.WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-    } catch (e) {
-      console.error("Analiz hatası:", e);
-    }
-  }
-  sendVisitorAnalytics();
 </script>
 </body>
 </html>
