@@ -64,7 +64,7 @@ body::before {
 
 .header-section {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .header-section h1 {
@@ -78,6 +78,33 @@ body::before {
   opacity: .7;
   letter-spacing: 3px;
   margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+/* Soft Language Badges */
+.lang-badges {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lang-badge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.lang-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
 .accordion-item {
@@ -133,25 +160,6 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.game-item {
-  background: rgba(20, 20, 25, .35);
-  border: 1px solid rgba(255, 255, 255, .15);
-  border-radius: 14px;
-  padding: 14px 16px;
-  min-height: 55px;
-}
-
-.game-title {
-  font-size: 14px;
-  color: white;
-}
-
-.game-role {
-  font-size: 11px;
-  opacity: .6;
-  margin-top: 5px;
 }
 
 .section-title {
@@ -277,7 +285,7 @@ body::before {
 }
 
 .project-card .game-title { font-size: 13px; font-weight: 600; color: white; }
-.project-card .game-role  { font-size: 11px; opacity: .5; margin-top: 4px; }
+.project-card .game-role  { font-size: 11px; opacity: .5; margin-top: 4px; line-height: 1.4; }
 
 a.project-link { text-decoration: none; display: block; color: inherit; }
 
@@ -385,6 +393,10 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   <div class="header-section">
     <h1>KEYARU</h1>
     <p>MODERATOR</p>
+    <div class="lang-badges">
+      <span class="lang-badge">🇹🇷 TR</span>
+      <span class="lang-badge">🇬🇧 EN</span>
+    </div>
   </div>
 
   <div class="accordion">
@@ -402,6 +414,33 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
         </div>
       </div>
     </div>
+
+    <!-- YENİ EKLENEN SKILLS & TOOLS BÖLÜMÜ -->
+    <div class="accordion-item">
+      <button class="accordion-btn">
+        SKILLS & TOOLS
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-panel">
+        <div class="panel-content">
+          <div class="game-list">
+            <div class="project-card animate-slide">
+              <div class="game-title">Security & Moderation</div>
+              <div class="game-role">Wick, Carl-bot, Dyno, AutoMod Configuration</div>
+            </div>
+            <div class="project-card animate-slide">
+              <div class="game-title">Community Management</div>
+              <div class="game-role">Ticket Systems, Giveaways, Event Coordination</div>
+            </div>
+            <div class="project-card animate-slide">
+              <div class="game-title">Support</div>
+              <div class="game-role">Conflict Resolution, Active Member Assistance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- YENİ EKLENEN SKILLS & TOOLS BÖLÜMÜ SONU -->
 
     <div class="accordion-item">
       <button class="accordion-btn">
@@ -461,7 +500,6 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
 
   </div>
 </div>
-
 
 <script>
   const VIDEO_ID = "hmdzniMJOZs";
