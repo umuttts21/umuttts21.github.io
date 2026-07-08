@@ -3,7 +3,7 @@ name: Portfolio Discord Bildirimi
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   discord-notify:
@@ -12,22 +12,64 @@ jobs:
       - name: Kodları Çek
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2 
+          fetch-depth: 2
 
       - name: Değişiklikleri Hesapla
         id: calc_stat
         run: |
-          STAT=$(git diff --shortstat HEAD^ HEAD || echo "İlk commit.")
-          echo "diff_stat=$STAT" >> $GITHUB_OUTPUT
+          STAT=$(git diff --shortstat HEAD^ HEAD || echo "0 files changed")
+          FILES=$(echo "$STAT" | grep -oP '\d+(?= files? changed)' || echo "0")
+          INSERTIONS=$(echo "$STAT" | grep -oP '\d+(?= insertions?\(\+\))' || echo "0")
+          DELETIONS=$(echo "$STAT" | grep -oP '\d+(?= deletions?\(-\))' || echo "0")
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "insertions=$INSERTIONS" >> $GITHUB_OUTPUT
+          echo "deletions=$DELETIONS" >> $GITHUB_OUTPUT
 
       - name: Discord'a Bildirim Gönder
         env:
           WEBHOOK_URL: ${{ secrets.PORTFOLIO_WEBHOOK }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
           AUTHOR: ${{ github.actor }}
+          SHA: ${{ github.sha }}
+          FILES: ${{ steps.calc_stat.outputs.files }}
+          INSERTIONS: ${{ steps.calc_stat.outputs.insertions }}
+          DELETIONS: ${{ steps.calc_stat.outputs.deletions }}
         run: |
-          curl -H "Content-Type: application/json" -X POST -d "$(jq -n \
+          SHORT_SHA=${SHA:0:7}
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          if [ "$INSERTIONS" -ge "$DELETIONS" ]; then COLOR=3066993; else COLOR=15158332; fi
+
+          PAYLOAD=$(jq -n \
             --arg msg "$COMMIT_MSG" \
-            --arg stat "${{ steps.calc_stat.outputs.diff_stat }}" \
+            --arg url "$COMMIT_URL" \
             --arg auth "$AUTHOR" \
-            '{content: "🚀 **Güncelleme:** \($msg)\n👤 **Yapan:** \($auth)\n📊 **Fark:** \($stat)"}')" "$WEBHOOK_URL"
+            --arg avatar "https://github.com/$AUTHOR.png" \
+            --arg profile "https://github.com/$AUTHOR" \
+            --arg files "$FILES" \
+            --arg ins "$INSERTIONS" \
+            --arg del "$DELETIONS" \
+            --arg sha "$SHORT_SHA" \
+            --arg ts "$TIMESTAMP" \
+            --argjson color "$COLOR" \
+            '{
+              username: "umuttts21.github.io",
+              avatar_url: "https://github.githubassets.com/favicons/favicon.png",
+              embeds: [{
+                title: "🚀 Yeni Commit Gönderildi",
+                url: $url,
+                description: $msg,
+                color: $color,
+                author: { name: $auth, icon_url: $avatar, url: $profile },
+                fields: [
+                  { name: "📁 Dosya", value: $files, inline: true },
+                  { name: "➕ Eklenen", value: ($ins + " satır"), inline: true },
+                  { name: "➖ Silinen", value: ($del + " satır"), inline: true },
+                  { name: "🔗 Commit", value: ("`" + $sha + "`"), inline: true }
+                ],
+                footer: { text: "GitHub Actions", icon_url: "https://github.githubassets.com/favicons/favicon.png" },
+                timestamp: $ts
+              }]
+            }')
+
+          curl -s -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$WEBHOOK_URL"
