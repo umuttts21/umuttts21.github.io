@@ -130,13 +130,22 @@ body::before {
   cursor: pointer;
 }
 
+/* Modern Soft Arrows */
 .accordion-btn .arrow {
-  display: inline-block;
-  transition: transform .35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.55;
+}
+
+.accordion-btn:hover .arrow {
+  opacity: 0.9;
 }
 
 .accordion-btn.open .arrow {
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
+  opacity: 1;
 }
 
 .accordion-panel {
@@ -404,7 +413,9 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
     <div class="accordion-item">
       <button class="accordion-btn">
         ABOUT ME
-        <span class="arrow">▼</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
       </button>
       <div class="accordion-panel">
         <div class="panel-content">
@@ -415,11 +426,12 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       </div>
     </div>
 
-    <!-- YENİ EKLENEN SKILLS & TOOLS BÖLÜMÜ -->
     <div class="accordion-item">
       <button class="accordion-btn">
         SKILLS & TOOLS
-        <span class="arrow">▼</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
       </button>
       <div class="accordion-panel">
         <div class="panel-content">
@@ -440,12 +452,13 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
         </div>
       </div>
     </div>
-    <!-- YENİ EKLENEN SKILLS & TOOLS BÖLÜMÜ SONU -->
 
     <div class="accordion-item">
       <button class="accordion-btn">
         PORTFOLIO
-        <span class="arrow">▼</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
       </button>
       <div class="accordion-panel">
         <div class="panel-content">
@@ -488,10 +501,12 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
           </div>
 
           <div class="section-title" style="margin-top:15px;">TESTER</div>
-          <div class="project-card animate-slide" data-invite="KQPZMeDES2">
-            <div class="game-title">ADX</div>
-            <div class="game-role">Official Tester</div>
-            <div class="game-stats">Loading stats...</div>
+          <div class="game-list">
+            <div class="project-card animate-slide" data-invite="KQPZMeDES2">
+              <div class="game-title">ADX</div>
+              <div class="game-role">Official Tester</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
           </div>
 
         </div>
@@ -606,16 +621,13 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   }
 
   async function loadServerStats() {
-    const gameList = document.querySelector('.game-list');
-    const items = Array.from(gameList.children);
-
-    const fetchPromises = items.map(async (itemEl) => {
-      const card = itemEl.hasAttribute('data-invite') ? itemEl : itemEl.querySelector('[data-invite]');
-      if (!card) return { el: itemEl, online: -1 };
-
+    // Sayfadaki "data-invite" özelliğine sahip TÜM kartları seç
+    const cards = Array.from(document.querySelectorAll('.project-card[data-invite]'));
+    
+    const fetchPromises = cards.map(async (card) => {
       const code = card.getAttribute('data-invite');
       const statsEl = card.querySelector('.game-stats');
-
+      
       try {
         const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
         if (!r.ok) throw new Error("bad response");
@@ -625,34 +637,34 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
         const totalCount = data.approximate_member_count ?? 0;
 
         statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
-        return { el: itemEl, online: onlineCount };
+        return { card, online: onlineCount };
       } catch (e) {
         statsEl.textContent = "Stats unavailable";
-        return { el: itemEl, online: -1 };
+        return { card, online: -1 };
       }
     });
 
     const results = await Promise.all(fetchPromises);
-    results.sort((a, b) => b.online - a.online);
-    results.forEach(result => {
-      gameList.appendChild(result.el);
+    
+    // Kartları kendi bulundukları liste (game-list) içinde grupla
+    const parentGroups = new Map();
+    results.forEach(res => {
+      const parent = res.card.parentElement;
+      if (!parentGroups.has(parent)) {
+        parentGroups.set(parent, []);
+      }
+      parentGroups.get(parent).push(res);
     });
 
-    document.querySelectorAll('.panel-content > .project-card[data-invite]').forEach(async (card) => {
-      const code = card.getAttribute('data-invite');
-      const statsEl = card.querySelector('.game-stats');
-      try {
-        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
-        if (!r.ok) throw new Error("bad response");
-        const data = await r.json();
-        const onlineCount = data.approximate_presence_count ?? 0;
-        const totalCount = data.approximate_member_count ?? 0;
-        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
-      } catch (e) {
-        statsEl.textContent = "Stats unavailable";
-      }
+    // Her grubun içindeki kartları online sayısına göre sırala ve yerlerine yerleştir
+    parentGroups.forEach((group, parent) => {
+      group.sort((a, b) => b.online - a.online);
+      group.forEach(item => {
+        parent.appendChild(item.card);
+      });
     });
   }
+  
   loadServerStats();
 
 </script>
