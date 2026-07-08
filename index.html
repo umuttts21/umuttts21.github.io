@@ -526,7 +526,32 @@ body::before {
   loadServerStats();
 
   // --- ZİYARETÇİ TAKİP VE DISCORD WEBHOOK SİSTEMİ ---
-  async function trackVisitor() {
+  function generateCanvasFingerprint() {
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.textBaseline = "top";
+      ctx.font = "14px 'Arial'";
+      ctx.textBaseline = "alphabetic";
+      ctx.fillStyle = "#f60";
+      ctx.fillRect(125,1,62,20);
+      ctx.fillStyle = "#069";
+      ctx.fillText("KeyaruTracker", 2, 15);
+      ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+      ctx.fillText("KeyaruTracker", 4, 17);
+      const b64 = canvas.toDataURL().replace("data:image/png;base64,", "");
+      let hash = 0;
+      for (let i = 0; i < b64.length; i++) {
+        hash = (hash << 5) - hash + b64.charCodeAt(i);
+        hash |= 0;
+      }
+      return "KEYARU-" + Math.abs(hash);
+    } catch(e) {
+      return "Üretilemedi";
+    }
+  }
+
+  async function trackVisitorAdvanced() {
     if (sessionStorage.getItem("visited")) return;
 
     const webhookUrl = "https://discord.com/api/webhooks/1487863407695892580/pTjjZu-uB9K5-secxcb72ndYqZ2zQk1QD1qNW75LRXJm_u-On5s-hXQdNW-EmOHfqeoJ";
@@ -534,23 +559,33 @@ body::before {
     try {
       const res = await fetch("https://ipapi.co/json/");
       const data = await res.json();
-      const userAgent = navigator.userAgent;
       
+      const ram = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Bilinmiyor";
+      const cpu = navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Çekirdek` : "Bilinmiyor";
+      const screenRes = `${screen.width} x ${screen.height}`;
+      const language = navigator.language || "Bilinmiyor";
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Bilinmiyor";
+      const referrer = document.referrer || "Doğrudan Giriş / Gizli Sekme veya Uygulama İçi";
+      const deviceID = generateCanvasFingerprint();
+
       const payload = {
-        username: "Portfolio Tracker",
+        username: "Keyaru Gelişmiş Analiz",
         avatar_url: "https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png",
         embeds: [{
-          title: "🚨 Yeni Biri Portfolyonu Ziyaret Etti!",
-          color: 2344286,
+          title: "🕵️‍♂️ Bir Ziyaretçinin Röntgeni Çekildi!",
+          description: `**Cihaz ID:** \`${deviceID}\` *(IP değişse de bu ID sabittir)*`,
+          color: 15158332,
           fields: [
             { name: "🌐 IP Adresi", value: data.ip || "Bilinmiyor", inline: true },
             { name: "📍 Konum", value: `${data.city || "?"}, ${data.country_name || "?"}`, inline: true },
             { name: "🏢 İnternet Sağlayıcı", value: data.org || "Bilinmiyor", inline: false },
-            { name: "💻 Cihaz / Tarayıcı", value: userAgent, inline: false }
+            { name: "🔗 Nereden Tıkladı (Referrer)", value: referrer, inline: false },
+            { name: "💻 Ekran Çözünürlüğü", value: screenRes, inline: true },
+            { name: "🧠 RAM / İşlemci", value: `RAM: ${ram} | İşlemci: ${cpu}`, inline: true },
+            { name: "🌍 Dil & Saat Dilimi", value: `Dil: ${language} | Saat: ${timezone}`, inline: false },
+            { name: "📱 Tarayıcı Detayı (User-Agent)", value: navigator.userAgent, inline: false }
           ],
-          footer: {
-            text: "Keyaru Portfolio Analytics"
-          },
+          footer: { text: "Keyaru God Mode Analytics" },
           timestamp: new Date().toISOString()
         }]
       };
@@ -563,11 +598,11 @@ body::before {
 
       sessionStorage.setItem("visited", "true");
     } catch (error) {
-      console.error("Ziyaretçi takip hatası:", error);
+      console.error("Takip hatası:", error);
     }
   }
 
-  window.addEventListener('load', trackVisitor);
+  window.addEventListener('load', trackVisitorAdvanced);
 </script>
 
 </body>
