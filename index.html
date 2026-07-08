@@ -41,11 +41,14 @@ body::before {
   max-width: 380px;
   padding: 40px 28px;
   border-radius: 28px;
-  background: rgba(15, 15, 20, .35);
+  /* Ortası daha şeffaf, köşelere doğru yoğunlaşan buz mavisi */
+  background: radial-gradient(circle, rgba(135, 206, 250, 0.03) 0%, rgba(135, 206, 250, 0.25) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, .18);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, .5);
+  /* Buzu andıran hafif mavimsi beyaz sınır çizgisi */
+  border: 1px solid rgba(135, 206, 250, 0.25);
+  /* İçeriye doğru hafif bir buz ışıltısı ve dışarıya klasik gölge */
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(135, 206, 250, 0.12);
   color: white;
 }
 
