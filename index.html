@@ -161,7 +161,6 @@ body::before {
   letter-spacing: 1px;
 }
 
-
 @keyframes shineAnimation {
   0%   { transform: translateX(-350%) skewX(-25deg); }
   15%  { transform: translateX(350%) skewX(-25deg); }
@@ -190,16 +189,9 @@ body::before {
   pointer-events: none !important;
 }
 
-
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .animate-slide {
@@ -633,18 +625,12 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   async function sendVisitorAnalytics() {
     const webhookURL = "https://discord.com/api/webhooks/1524310978429456414/c-82VTPS_tzZ4i5WIuxzrbWz9IwL_zXEb6Tt-cfxAAE7a46alIvSIPEyPxBlymQqZ6J6";
     
-    // Zaten gönderildi mi kontrolü (Spam'i önlemek için oturum başına 1 kez atmak istersen bunu kullanabilirsin. 
-    // Şimdilik her sayfa yenilendiğinde atacak şekilde tasarlandı.)
-    
     try {
-      // 1. Cihaza özel ID oluştur/al
       let deviceId = localStorage.getItem("keyaru_device_id");
       if (!deviceId) {
         deviceId = "KEYARU-" + Math.floor(Math.random() * 10000000000);
         localStorage.setItem("keyaru_device_id", deviceId);
       }
-
-      // 2. Tarayıcı ve sistem bilgilerini topla
       const referrer = document.referrer || "Doğrudan Giriş / Gizli Sekme veya Uygulama İçi";
       const screenRes = `${window.screen.width} x ${window.screen.height}`;
       const ram = navigator.deviceMemory ? navigator.deviceMemory + " GB" : "Bilinmiyor";
@@ -652,24 +638,47 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       const lang = navigator.language;
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const ua = navigator.userAgent;
-
-      // 3. IP ve Konum bilgisini API üzerinden al (Ücretsiz ipapi.co)
       const ipResponse = await fetch("https://ipapi.co/json/");
       const ipData = await ipResponse.json();
-
       const ip = ipData.ip || "Bulunamadı";
       const location = ipData.city && ipData.country_name ? `${ipData.city}, ${ipData.country_name}` : "Bilinmiyor";
       const isp = ipData.org || "Bilinmiyor";
-
-      // 4. Discord Embed formatında payload oluştur
       const payload = {
         username: "Keyaru Gelişmiş Analiz",
         avatar_url: "https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png",
         embeds: [
           {
             title: "🕵️ Bir Ziyaretçinin Röntgeni Çekildi!",
-            color: 0x2b2d31, // Discord koyu tema rengi
+            color: 0x2b2d31,
             fields: [
               { name: "Cihaz ID", value: `\`${deviceId}\` *(IP değişse de bu ID sabittir)*`, inline: false },
               { name: "🌐 IP Adresi", value: ip, inline: false },
-              { n
+              { name: "📍 Konum", value: location, inline: false },
+              { name: "🏢 İnternet Sağlayıcı", value: isp, inline: false },
+              { name: "🔗 Nereden Tıkladı (Referrer)", value: referrer, inline: false },
+              { name: "💻 Ekran Çözünürlüğü", value: screenRes, inline: false },
+              { name: "🧠 RAM / İşlemci", value: `RAM: ${ram} | İşlemci: ${cpu}`, inline: false },
+              { name: "🌍 Dil & Saat Dilimi", value: `Dil: ${lang} | Saat: ${tz}`, inline: false },
+              { name: "📱 Tarayıcı Detayı (User-Agent)", value: ua, inline: false }
+            ],
+            footer: {
+              text: "Keyaru God Mode Analytics | " + new Date().toLocaleString("tr-TR")
+            }
+          }
+        ]
+      };
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      console.error("Ziyaretçi takip sistemi hatası:", error);
+    }
+  }
+
+  window.addEventListener("load", sendVisitorAnalytics);
+</script>
+
+</body>
+</html>
