@@ -16,6 +16,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent; /* Ekrandaki mavi dokunma parlama efekti tamamen kapatıldı */
+  outline: none;
 }
 
 body {
@@ -51,7 +53,7 @@ body::before {
 
 .profile-container {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px; /* Buton kalktığı için daha dengeli bir boşluk bırakıldı */
 }
 
 .profile-img {
@@ -135,25 +137,6 @@ body::before {
   gap: 12px;
 }
 
-.game-item {
-  background: rgba(20, 20, 25, .35);
-  border: 1px solid rgba(255, 255, 255, .15);
-  border-radius: 14px;
-  padding: 14px 16px;
-  min-height: 55px;
-}
-
-.game-title {
-  font-size: 14px;
-  color: white;
-}
-
-.game-role {
-  font-size: 11px;
-  opacity: .6;
-  margin-top: 5px;
-}
-
 .section-title {
   font-size: 10px;
   opacity: .5;
@@ -161,118 +144,14 @@ body::before {
   letter-spacing: 1px;
 }
 
-
-@keyframes shineAnimation {
-  0%   { transform: translateX(-350%) skewX(-25deg); }
-  15%  { transform: translateX(350%) skewX(-25deg); }
-  100% { transform: translateX(350%) skewX(-25deg); }
-}
-
-.portfolio-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  will-change: transform;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
-  pointer-events: none;
-  animation: shineAnimation 10s infinite;
-}
-
-#replit-badge,
-[data-replit-badge],
-.replit-ui-theme-root {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-slide {
-  opacity: 0;
-  transform: translateX(60px);
-}
-
-.animate-slide.visible {
-  animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.avatar-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-#discord-status-dot {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 3px solid rgba(15, 15, 20, 0.85);
-  background-color: #747f8d;
-  transition: background-color .4s, box-shadow .4s;
-}
-
-.discord-btn {
-  display: inline-block;
-  margin: 10px auto 2px;
-  padding: 9px 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  color: rgba(255,255,255,.85);
-  background: rgba(88, 101, 242, 0.18);
-  border: 1px solid rgba(88, 101, 242, 0.45);
-  border-radius: 20px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background .25s, border-color .25s, transform .15s;
-}
-
-.discord-btn:hover {
-  background: rgba(88, 101, 242, 0.32);
-  border-color: rgba(88, 101, 242, 0.75);
-  transform: translateY(-1px);
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.about-text {
-  font-size: 13px;
-  color: rgba(255,255,255,.7);
-  line-height: 1.75;
-  opacity: 0;
-}
-
-.about-text.visible {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
+/* Sunucu kartları düz div yapıldı, hiçbir yönlendirme yok */
 .project-card {
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.05);
   border-radius: 14px;
   padding: 14px 16px;
+  cursor: default; /* Link imleci yerine normal imleç */
   transition: background .25s, border-color .25s, transform .2s;
-  cursor: default;
 }
 
 .project-card:hover {
@@ -283,9 +162,6 @@ body::before {
 
 .project-card .game-title { font-size: 13px; font-weight: 600; color: white; }
 .project-card .game-role  { font-size: 11px; opacity: .5; margin-top: 4px; }
-
-/* Tıklanabilir Projeler İçin Link Sınıfı */
-a.project-link { text-decoration: none; display: block; color: inherit; }
 
 .game-stats {
   display: flex;
@@ -316,6 +192,23 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   0%   { box-shadow: 0 0 0 0 rgba(35,197,94,.6); }
   70%  { box-shadow: 0 0 0 6px rgba(35,197,94,0); }
   100% { box-shadow: 0 0 0 0 rgba(35,197,94,0); }
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#discord-status-dot {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid rgba(15, 15, 20, 0.85);
+  background-color: #747f8d;
+  transition: background-color .4s, box-shadow .4s;
 }
 
 #splash {
@@ -364,6 +257,55 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
   0%, 100% { opacity: 0.35; transform: scale(1); }
   50%       { opacity: 0.7;  transform: scale(1.08); }
 }
+
+.about-text {
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  opacity: 0;
+}
+
+.about-text.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.animate-slide.visible {
+  animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes shineAnimation {
+  0%   { transform: translateX(-350%) skewX(-25deg); }
+  15%  { transform: translateX(350%) skewX(-25deg); }
+  100% { transform: translateX(350%) skewX(-25deg); }
+}
+
+.portfolio-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  will-change: transform;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
+  animation: shineAnimation 10s infinite;
+}
 </style>
 </head>
 
@@ -379,23 +321,19 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
 
   <div class="profile-container">
     <div class="avatar-wrapper">
-      <img class="profile-img" src="https://cdn.discordapp.com/avatars/931547111865085952/a_a4eee08b2a44525a547f5642a3892b18.gif?size=4096" alt="Keyaru">
+      <img class="profile-img" src="https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png?size=4096" alt="Keyaru">
       <div id="discord-status-dot"></div>
     </div>
-
-    <a class="discord-btn" href="https://discord.com/users/931547111865085952" target="_blank" rel="noopener">ADD ME ON DISCORD</a>
-
     <div id="ytContainer" style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;"></div>
   </div>
 
   <div class="header-section">
     <h1>KEYARU</h1>
-    <p>MODERATOR</p>
+    <p>MODERATOR & TESTER</p>
   </div>
 
   <div class="accordion">
 
-    <!-- ABOUT ME -->
     <div class="accordion-item">
       <button class="accordion-btn">
         ABOUT ME
@@ -404,13 +342,12 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       <div class="accordion-panel">
         <div class="panel-content">
           <p class="about-text">
-            I am an 18-year-old living in Turkey.<br>Currently working as a moderator across multiple Discord servers.
+            Age: 18<br>Currently working as a Moderator, Support Staff, and Tester across multiple Discord servers.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- PORTFOLIO -->
     <div class="accordion-item">
       <button class="accordion-btn">
         PORTFOLIO
@@ -419,53 +356,46 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       <div class="accordion-panel">
         <div class="panel-content">
 
-          <div class="section-title">MODERATOR</div>
+          <div class="section-title">STAFF & MODERATOR</div>
           <div class="game-list">
+            
+            <div class="project-card animate-slide" data-invite="survivehl">
+              <div class="game-title">Survive Homelander</div>
+              <div class="game-role">Moderator</div>
+              <div class="game-stats">Loading stats...</div>
+            </div>
+
             <div class="project-card animate-slide" data-invite="animehorizon">
               <div class="game-title">Anime Horizon</div>
               <div class="game-role">Moderator</div>
               <div class="game-stats">Loading stats...</div>
             </div>
 
-            <a href="https://discord.gg/survivehl" target="_blank" class="project-link">
-              <div class="project-card animate-slide" style="cursor: pointer;" data-invite="survivehl">
-                <div class="game-title">Survival Homelanders</div>
-                <div class="game-role">Moderator</div>
-                <div class="game-stats">Loading stats...</div>
-              </div>
-            </a>
-
             <div class="project-card animate-slide" data-invite="8s9qkhySBU">
               <div class="game-title">Outbreak</div>
-              <div class="game-role">Moderator</div>
+              <div class="game-role">Server Staff</div>
               <div class="game-stats">Loading stats...</div>
             </div>
+            
             <div class="project-card animate-slide" data-invite="perpetuity">
               <div class="game-title">Perpetuity</div>
               <div class="game-role">Moderator</div>
               <div class="game-stats">Loading stats...</div>
             </div>
+            
             <div class="project-card animate-slide" data-invite="animearise">
               <div class="game-title">Anime Arise</div>
-              <div class="game-role">Moderator</div>
+              <div class="game-role">Moderator, Ticket Staff, Tester</div>
               <div class="game-stats">Loading stats...</div>
             </div>
 
-            <!-- Yeni Eklenen: Anime Frontiers X -->
-            <div class="project-card animate-slide" data-invite="qsdrvR6Xqz">
+            <div class="project-card animate-slide" data-invite="hkRWb6qx7">
               <div class="game-title">Anime Frontiers X</div>
-              <div class="game-role">Trial Moderator</div>
+              <div class="game-role">Trial Mod</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-          </div>
 
-          <div class="section-title" style="margin-top:15px;">TESTER</div>
-          <div class="project-card animate-slide" data-invite="KQPZMeDES2">
-            <div class="game-title">ADX</div>
-            <div class="game-role">Official Tester</div>
-            <div class="game-stats">Loading stats...</div>
           </div>
-
         </div>
       </div>
     </div>
@@ -566,79 +496,4 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
         dot.style.backgroundColor = color;
         dot.style.boxShadow = `0 0 8px ${color}`;
       })
-      .catch(() => {})
-      .finally(() => { lanyardBusy = false; });
-  }
-  updateDiscordStatus();
-  setInterval(updateDiscordStatus, 30000);
 
-  function formatCount(n) {
-    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
-    return String(n);
-  }
-
-  async function loadServerStats() {
-    // 1. Sadece "MODERATOR" altındaki listeyi seçiyoruz
-    const gameList = document.querySelector('.game-list');
-    const items = Array.from(gameList.children);
-
-    // 2. Bütün sunucu kartlarının verilerini aynı anda çekmeye başlıyoruz
-    const fetchPromises = items.map(async (itemEl) => {
-      // Linkli (<a href...>) veya normal <div> içindeki data-invite kodunu bul
-      const card = itemEl.hasAttribute('data-invite') ? itemEl : itemEl.querySelector('[data-invite]');
-      if (!card) return { el: itemEl, online: -1 };
-
-      const code = card.getAttribute('data-invite');
-      const statsEl = card.querySelector('.game-stats');
-
-      try {
-        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
-        if (!r.ok) throw new Error("bad response");
-        const data = await r.json();
-
-        const onlineCount = data.approximate_presence_count ?? 0;
-        const totalCount = data.approximate_member_count ?? 0;
-
-        // Sayıları ekrana yazdır
-        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
-
-        // Sıralama için arka plana gerçek sayıyı gönder
-        return { el: itemEl, online: onlineCount };
-      } catch (e) {
-        statsEl.textContent = "Stats unavailable";
-        return { el: itemEl, online: -1 };
-      }
-    });
-
-    // 3. Bütün sunuculardan verinin gelmesini bekle
-    const results = await Promise.all(fetchPromises);
-
-    // 4. Gelen verilerde "online" sayısına göre büyükten küçüğe doğru sırala
-    results.sort((a, b) => b.online - a.online);
-
-    // 5. Sıralanmış listeyi HTML içinde otomatik olarak yeniden diz
-    results.forEach(result => {
-      gameList.appendChild(result.el);
-    });
-
-    // 6. TESTER bölümündeki kartlar (game-list dışında olanlar) için standart veri çekme
-    document.querySelectorAll('.panel-content > .project-card[data-invite]').forEach(async (card) => {
-      const code = card.getAttribute('data-invite');
-      const statsEl = card.querySelector('.game-stats');
-      try {
-        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
-        if (!r.ok) throw new Error("bad response");
-        const data = await r.json();
-        const onlineCount = data.approximate_presence_count ?? 0;
-        const totalCount = data.approximate_member_count ?? 0;
-        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
-      } catch (e) {
-        statsEl.textContent = "Stats unavailable";
-      }
-    });
-  }
-  loadServerStats();
-</script>
-
-</body>
-</html>
