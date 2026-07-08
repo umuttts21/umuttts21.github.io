@@ -16,7 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
-  -webkit-tap-highlight-color: transparent; /* Ekrandaki mavi dokunma parlama efekti tamamen kapatıldı */
+  -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 
@@ -49,11 +49,12 @@ body::before {
   border: 1px solid rgba(255, 255, 255, .18);
   box-shadow: 0 25px 45px rgba(0, 0, 0, .5);
   color: white;
+  z-index: 10;
 }
 
 .profile-container {
   text-align: center;
-  margin-bottom: 25px; /* Buton kalktığı için daha dengeli bir boşluk bırakıldı */
+  margin-bottom: 25px;
 }
 
 .profile-img {
@@ -144,13 +145,12 @@ body::before {
   letter-spacing: 1px;
 }
 
-/* Sunucu kartları düz div yapıldı, hiçbir yönlendirme yok */
 .project-card {
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.05);
   border-radius: 14px;
   padding: 14px 16px;
-  cursor: default; /* Link imleci yerine normal imleç */
+  cursor: default;
   transition: background .25s, border-color .25s, transform .2s;
 }
 
@@ -174,9 +174,7 @@ body::before {
   white-space: nowrap;
 }
 
-.game-stats .stat-sep {
-  opacity: .5;
-}
+.game-stats .stat-sep { opacity: .5; }
 
 .pulse-dot {
   width: 6px;
@@ -214,22 +212,17 @@ body::before {
 #splash {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.85);
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 18px;
   cursor: pointer;
-  transition: opacity 0.6s ease;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-#splash.hidden {
-  opacity: 0;
-  pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .splash-icon {
@@ -265,9 +258,7 @@ body::before {
   opacity: 0;
 }
 
-.about-text.visible {
-  animation: fadeInUp 0.5s ease forwards;
-}
+.about-text.visible { animation: fadeInUp 0.5s ease forwards; }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(12px); }
@@ -279,14 +270,8 @@ body::before {
   to { opacity: 1; transform: translateX(0); }
 }
 
-.animate-slide {
-  opacity: 0;
-  transform: translateX(60px);
-}
-
-.animate-slide.visible {
-  animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
+.animate-slide { opacity: 0; transform: translateX(60px); }
+.animate-slide.visible { animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
 
 @keyframes shineAnimation {
   0%   { transform: translateX(-350%) skewX(-25deg); }
@@ -355,46 +340,38 @@ body::before {
       </button>
       <div class="accordion-panel">
         <div class="panel-content">
-
           <div class="section-title">STAFF & MODERATOR</div>
           <div class="game-list">
-            
             <div class="project-card animate-slide" data-invite="survivehl">
               <div class="game-title">Survive Homelander</div>
               <div class="game-role">Moderator</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-
             <div class="project-card animate-slide" data-invite="animehorizon">
               <div class="game-title">Anime Horizon</div>
               <div class="game-role">Moderator</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-
             <div class="project-card animate-slide" data-invite="8s9qkhySBU">
               <div class="game-title">Outbreak</div>
               <div class="game-role">Server Staff</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-            
             <div class="project-card animate-slide" data-invite="perpetuity">
               <div class="game-title">Perpetuity</div>
               <div class="game-role">Moderator</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-            
             <div class="project-card animate-slide" data-invite="animearise">
               <div class="game-title">Anime Arise</div>
               <div class="game-role">Moderator, Ticket Staff, Tester</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-
             <div class="project-card animate-slide" data-invite="hkRWb6qx7">
               <div class="game-title">Anime Frontiers X</div>
               <div class="game-role">Trial Mod</div>
               <div class="game-stats">Loading stats...</div>
             </div>
-
           </div>
         </div>
       </div>
@@ -407,21 +384,29 @@ body::before {
   const VIDEO_ID = "hmdzniMJOZs";
   let ytPlayer = null;
   let playerReady = false;
+  let hasStarted = false;
 
   const splash = document.getElementById("splash");
 
   function startEverything() {
-    splash.classList.add("hidden");
-    splash.addEventListener("transitionend", function() {
+    if(hasStarted) return;
+    hasStarted = true;
+    
+    splash.style.opacity = "0";
+    splash.style.pointerEvents = "none";
+    
+    setTimeout(() => {
       splash.style.display = "none";
-    }, { once: true });
-    if (playerReady) {
+    }, 400);
+
+    if (playerReady && ytPlayer) {
       try { ytPlayer.unMute(); ytPlayer.setVolume(80); ytPlayer.playVideo(); } catch(e) {}
     }
   }
 
-  splash.addEventListener("click",      startEverything, { once: true });
-  splash.addEventListener("touchstart", startEverything, { once: true });
+  // Tıklama olayını tüm sayfaya (document) verdik, takılma ihtimali yok.
+  document.addEventListener("click", startEverything, { once: true });
+  document.addEventListener("touchstart", startEverything, { once: true });
 
   window.onYouTubeIframeAPIReady = function () {
     ytPlayer = new YT.Player("ytContainer", {
@@ -496,4 +481,51 @@ body::before {
         dot.style.backgroundColor = color;
         dot.style.boxShadow = `0 0 8px ${color}`;
       })
+      .catch(() => {})
+      .finally(() => { lanyardBusy = false; });
+  }
+  updateDiscordStatus();
+  setInterval(updateDiscordStatus, 30000);
 
+  function formatCount(n) {
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    return String(n);
+  }
+
+  async function loadServerStats() {
+    const gameList = document.querySelector('.game-list');
+    const items = Array.from(gameList.children);
+
+    const fetchPromises = items.map(async (itemEl) => {
+      const code = itemEl.getAttribute('data-invite');
+      const statsEl = itemEl.querySelector('.game-stats');
+
+      try {
+        const apiUrl = `https://discord.com/api/v9/invites/${code}?with_counts=true`;
+        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+        
+        const r = await fetch(proxyUrl);
+        if (!r.ok) throw new Error("bad response");
+        const data = await r.json();
+
+        const onlineCount = data.approximate_presence_count ?? 0;
+        const totalCount = data.approximate_member_count ?? 0;
+
+        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>👥 ${formatCount(totalCount)} Members`;
+        return { el: itemEl, online: onlineCount };
+      } catch (e) {
+        statsEl.textContent = "Stats unavailable";
+        return { el: itemEl, online: -1 };
+      }
+    });
+
+    const results = await Promise.all(fetchPromises);
+    results.sort((a, b) => b.online - a.online);
+    results.forEach(result => gameList.appendChild(result.el));
+  }
+  
+  loadServerStats();
+</script>
+
+</body>
+</html>
