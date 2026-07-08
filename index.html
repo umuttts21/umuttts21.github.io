@@ -41,14 +41,15 @@ body::before {
   max-width: 380px;
   padding: 40px 28px;
   border-radius: 28px;
-  /* Ortası daha şeffaf, köşelere doğru yoğunlaşan buz mavisi */
-  background: radial-gradient(circle, rgba(135, 206, 250, 0.03) 0%, rgba(135, 206, 250, 0.25) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  /* Buzu andıran hafif mavimsi beyaz sınır çizgisi */
-  border: 1px solid rgba(135, 206, 250, 0.25);
-  /* İçeriye doğru hafif bir buz ışıltısı ve dışarıya klasik gölge */
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(135, 206, 250, 0.12);
+  /* Premium Dark Frosted Glass Efekti */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(10, 10, 15, 0.45) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* Sadece üst ve sol kenarda hafif ışık yansıması (cam hissi için) */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
   color: white;
 }
 
