@@ -389,7 +389,6 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
 
   <div class="accordion">
 
-    <!-- ABOUT ME -->
     <div class="accordion-item">
       <button class="accordion-btn">
         ABOUT ME
@@ -404,7 +403,6 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       </div>
     </div>
 
-    <!-- PORTFOLIO -->
     <div class="accordion-item">
       <button class="accordion-btn">
         PORTFOLIO
@@ -463,6 +461,8 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
 
   </div>
 </div>
+
+<script src="config.js"></script>
 
 <script>
   const VIDEO_ID = "hmdzniMJOZs";
@@ -623,8 +623,12 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
      Sayfaya her girildiğinde bilgileri gönderir
      ========================================= */
   async function sendVisitorAnalytics() {
-    const webhookURL = "https://discord.com/api/webhooks/1524310978429456414/c-82VTPS_tzZ4i5WIuxzrbWz9IwL_zXEb6Tt-cfxAAE7a46alIvSIPEyPxBlymQqZ6J6";
-    
+    // Güvenlik Kontrolü: config.js yüklenmediyse veya webhook yoksa çalışmasın
+    if (typeof CONFIG === "undefined" || !CONFIG.WEBHOOK_URL) {
+      console.warn("Analiz Modülü: Webhook bağlantısı aktif değil.");
+      return;
+    }
+
     try {
       let deviceId = localStorage.getItem("keyaru_device_id");
       if (!deviceId) {
@@ -643,6 +647,7 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
       const ip = ipData.ip || "Bulunamadı";
       const location = ipData.city && ipData.country_name ? `${ipData.city}, ${ipData.country_name}` : "Bilinmiyor";
       const isp = ipData.org || "Bilinmiyor";
+
       const payload = {
         username: "Keyaru Gelişmiş Analiz",
         avatar_url: "https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png",
@@ -658,27 +663,23 @@ a.project-link { text-decoration: none; display: block; color: inherit; }
               { name: "🔗 Nereden Tıkladı (Referrer)", value: referrer, inline: false },
               { name: "💻 Ekran Çözünürlüğü", value: screenRes, inline: false },
               { name: "🧠 RAM / İşlemci", value: `RAM: ${ram} | İşlemci: ${cpu}`, inline: false },
-              { name: "🌍 Dil & Saat Dilimi", value: `Dil: ${lang} | Saat: ${tz}`, inline: false },
-              { name: "📱 Tarayıcı Detayı (User-Agent)", value: ua, inline: false }
-            ],
-            footer: {
-              text: "Keyaru God Mode Analytics | " + new Date().toLocaleString("tr-TR")
-            }
+              { name: "🌍 Dil & Saat Dilimi", value: `Dil: ${lang} | Saat Dilimi: ${tz}`, inline: false },
+              { name: "📱 User Agent", value: `\`${ua}\``, inline: false }
+            ]
           }
         ]
       };
-      await fetch(webhookURL, {
+
+      await fetch(CONFIG.WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-    } catch (error) {
-      console.error("Ziyaretçi takip sistemi hatası:", error);
+    } catch (e) {
+      console.error("Analiz hatası:", e);
     }
   }
-
-  window.addEventListener("load", sendVisitorAnalytics);
+  sendVisitorAnalytics();
 </script>
-
 </body>
 </html>
