@@ -193,28 +193,69 @@ body::before {
   background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
   pointer-events: none;
   animation: shineAnimation 10s infinite;
-}
-
-.portfolio-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
   z-index: 2;
-  background:
-    radial-gradient(240px 240px at 0% 0%, rgba(255, 255, 255, 0.45), rgba(200, 230, 255, 0.2) 35%, transparent 72%),
-    radial-gradient(240px 240px at 100% 0%, rgba(255, 255, 255, 0.4), rgba(200, 230, 255, 0.18) 35%, transparent 72%),
-    radial-gradient(240px 240px at 0% 100%, rgba(255, 255, 255, 0.38), rgba(200, 230, 255, 0.17) 35%, transparent 72%),
-    radial-gradient(240px 240px at 100% 100%, rgba(255, 255, 255, 0.38), rgba(200, 230, 255, 0.17) 35%, transparent 72%);
-  filter: blur(22px);
-  mix-blend-mode: screen;
-  animation: frostBreathe 7s ease-in-out infinite;
 }
 
-@keyframes frostBreathe {
-  0%, 100% { opacity: 0.8; }
-  50%      { opacity: 1; }
+/* ---- GERCEK BUZ PARCALARI (koselerden ortaya) ---- */
+.ice-cluster {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 4;
 }
+
+.ice-tl { top: -12px; left: -12px; }
+.ice-tr { top: -12px; right: -12px; transform: scaleX(-1); }
+.ice-bl { bottom: -12px; left: -12px; transform: scaleY(-1); }
+.ice-br { bottom: -12px; right: -12px; transform: scale(-1, -1); }
+
+.ice-shard {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, .55);
+  box-shadow: 0 3px 10px rgba(120, 180, 255, .3), inset 0 0 6px rgba(255, 255, 255, .35);
+}
+
+.ice-shard.s1 {
+  width: 78px; height: 78px;
+  top: 0; left: 0;
+  clip-path: polygon(0% 10%, 45% 0%, 100% 30%, 82% 78%, 40% 100%, 0% 65%);
+  background: linear-gradient(120deg,
+    rgba(255,255,255,.92) 0%, rgba(255,255,255,.92) 12%,
+    rgba(205,232,255,.55) 13%, rgba(205,232,255,.55) 42%,
+    rgba(255,255,255,.8) 43%, rgba(255,255,255,.8) 50%,
+    rgba(170,215,255,.3) 51%, rgba(170,215,255,.3) 100%);
+  opacity: .8;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 0 4px rgba(180,220,255,.35));
+}
+
+.ice-shard.s2 {
+  width: 50px; height: 50px;
+  top: 14px; left: 30px;
+  clip-path: polygon(15% 0%, 100% 15%, 85% 75%, 35% 100%, 0% 55%);
+  background: linear-gradient(120deg, rgba(255,255,255,.85) 0%, rgba(205,232,255,.5) 45%, rgba(170,215,255,.25) 100%);
+  opacity: .6;
+  transform: rotate(6deg);
+  animation: iceGlint 5s ease-in-out infinite;
+}
+
+.ice-shard.s3 {
+  width: 26px; height: 26px;
+  top: 46px; left: 54px;
+  clip-path: polygon(20% 0%, 100% 30%, 70% 100%, 0% 70%);
+  background: linear-gradient(120deg, rgba(255,255,255,.8) 0%, rgba(190,225,255,.35) 100%);
+  opacity: .45;
+  transform: rotate(-10deg);
+  animation: iceGlint 6s ease-in-out infinite 1.5s;
+}
+
+@keyframes iceGlint {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(200,230,255,.25)); }
+  50%      { filter: drop-shadow(0 0 8px rgba(200,230,255,.6)); }
+}
+/* ---------------------------------------------------- */
 
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(60px); }
@@ -281,6 +322,15 @@ body::before {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(255,255,255,.4);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 10px;
+  transition: background .2s, color .2s;
+}
+
+.now-playing:hover {
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.7);
 }
 
 .np-bars {
@@ -377,6 +427,27 @@ body::before {
 
 <div class="portfolio-card">
 
+  <div class="ice-cluster ice-tl" aria-hidden="true">
+    <span class="ice-shard s1"></span>
+    <span class="ice-shard s2"></span>
+    <span class="ice-shard s3"></span>
+  </div>
+  <div class="ice-cluster ice-tr" aria-hidden="true">
+    <span class="ice-shard s1"></span>
+    <span class="ice-shard s2"></span>
+    <span class="ice-shard s3"></span>
+  </div>
+  <div class="ice-cluster ice-bl" aria-hidden="true">
+    <span class="ice-shard s1"></span>
+    <span class="ice-shard s2"></span>
+    <span class="ice-shard s3"></span>
+  </div>
+  <div class="ice-cluster ice-br" aria-hidden="true">
+    <span class="ice-shard s1"></span>
+    <span class="ice-shard s2"></span>
+    <span class="ice-shard s3"></span>
+  </div>
+
   <div class="profile-container">
     <div class="avatar-wrapper">
       <img class="profile-img" src="https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png?size=4096" alt="Keyaru">
@@ -385,9 +456,9 @@ body::before {
 
     <a class="discord-btn" href="https://discord.com/users/931547111865085952" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg>Add me on Discord</a>
 
-    <div class="now-playing">
+    <div class="now-playing" id="npToggle" role="button" tabindex="0">
       <span class="np-bars"><span></span><span></span><span></span></span>
-      now playing
+      <span id="npLabel">tap to play</span>
     </div>
 
     <div id="ytContainer" style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;"></div>
@@ -515,7 +586,14 @@ body::before {
   const VIDEO_ID = "hmdzniMJOZs";
   let ytPlayer = null;
   let audioUnlocked = false;
+  let apiLoaded = false;
+  let fallbackActive = false;
 
+  const npToggle = document.getElementById('npToggle');
+  const npLabel = document.getElementById('npLabel');
+  function setLabel(t) { if (npLabel) npLabel.textContent = t; }
+
+  // GUVENLIK 1: normal YouTube IFrame API akisi
   function tryUnlockAudio() {
     if (audioUnlocked || !ytPlayer) return;
     try {
@@ -523,6 +601,7 @@ body::before {
       ytPlayer.setVolume(80);
       ytPlayer.playVideo();
       audioUnlocked = true;
+      setLabel('now playing');
     } catch (e) {}
   }
 
@@ -531,40 +610,98 @@ body::before {
   });
 
   window.onYouTubeIframeAPIReady = function () {
-    ytPlayer = new YT.Player("ytContainer", {
-      videoId: VIDEO_ID,
-      playerVars: {
-        autoplay: 1,
-        mute: 1,
-        controls: 0,
-        disablekb: 1,
-        modestbranding: 1,
-        enablejsapi: 1,
-        loop: 1,
-        playlist: VIDEO_ID,
-        origin: window.location.origin
-      },
-      events: {
-        onReady: function (e) {
-          e.target.setVolume(80);
-          e.target.playVideo();
-          tryUnlockAudio();
+    apiLoaded = true;
+    try {
+      ytPlayer = new YT.Player("ytContainer", {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          disablekb: 1,
+          modestbranding: 1,
+          enablejsapi: 1,
+          loop: 1,
+          playlist: VIDEO_ID,
+          origin: window.location.origin
         },
-        onStateChange: function (e) {
-          if (e.data === YT.PlayerState.ENDED) {
-            try { ytPlayer.seekTo(0); ytPlayer.playVideo(); } catch(_) {}
-          }
-          if (e.data === YT.PlayerState.PAUSED) {
-            try { ytPlayer.playVideo(); } catch(_) {}
+        events: {
+          onReady: function (e) {
+            try {
+              e.target.setVolume(80);
+              e.target.playVideo();
+            } catch (_) {}
+            tryUnlockAudio();
+          },
+          onStateChange: function (e) {
+            if (e.data === YT.PlayerState.ENDED) {
+              try { ytPlayer.seekTo(0); ytPlayer.playVideo(); } catch(_) {}
+            }
+            if (e.data === YT.PlayerState.PAUSED && audioUnlocked) {
+              try { ytPlayer.playVideo(); } catch(_) {}
+            }
+          },
+          onError: function () {
+            activateFallbackEmbed();
           }
         }
-      }
-    });
+      });
+    } catch (e) {
+      activateFallbackEmbed();
+    }
   };
 
   const tag = document.createElement("script");
   tag.src = "https://www.youtube.com/iframe_api";
+  tag.onerror = activateFallbackEmbed;
   document.head.appendChild(tag);
+
+  // GUVENLIK 2: API belirli surede yuklenmezse ham iframe'e dus
+  setTimeout(function () {
+    if (!apiLoaded) activateFallbackEmbed();
+  }, 4000);
+
+  function activateFallbackEmbed() {
+    if (fallbackActive) return;
+    fallbackActive = true;
+    const c = document.getElementById('ytContainer');
+    if (!c) return;
+    try {
+      c.innerHTML = '<iframe width="1" height="1" src="https://www.youtube.com/embed/' + VIDEO_ID +
+        '?autoplay=1&mute=1&loop=1&playlist=' + VIDEO_ID +
+        '&controls=0&disablekb=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>';
+    } catch (_) {}
+    setLabel('tap to play');
+  }
+
+  // GUVENLIK 3: elle tikla/dokun ile garantili kontrol
+  function manualToggle() {
+    if (ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+      try {
+        const state = ytPlayer.getPlayerState();
+        if (state === 1 && audioUnlocked) {
+          ytPlayer.pauseVideo();
+          audioUnlocked = false;
+          setLabel('paused');
+        } else {
+          ytPlayer.unMute();
+          ytPlayer.setVolume(80);
+          ytPlayer.playVideo();
+          audioUnlocked = true;
+          setLabel('now playing');
+        }
+      } catch (e) {}
+    } else {
+      activateFallbackEmbed();
+    }
+  }
+
+  if (npToggle) {
+    npToggle.addEventListener('click', manualToggle);
+    npToggle.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') manualToggle();
+    });
+  }
 
   document.querySelectorAll(".accordion-btn").forEach(btn => {
     btn.addEventListener("click", function () {
