@@ -127,6 +127,27 @@ body::before {
   font-weight: 400;
 }
 
+.visitor-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.visitor-clock #clockRegion {
+  opacity: .55;
+  font-weight: 400;
+}
+
 .accordion-item {
   margin-bottom: 12px;
   border-radius: 18px;
@@ -445,6 +466,10 @@ body::before {
     <div class="lang-badges">
       <span class="lang-badge">🇹🇷 TR</span>
       <span class="lang-badge">🇬🇧 EN</span>
+    </div>
+    <div class="visitor-clock" id="visitorClock">
+      <span id="clockTime">--:--</span>
+      <span id="clockRegion"></span>
     </div>
     <div class="visitor-clock" id="visitorClock">
       <span id="clockTime">--:--</span>
@@ -770,6 +795,21 @@ body::before {
       });
     });
   }
+
+  function updateVisitorClock() {
+    try {
+      const now = new Date();
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+      const timeStr = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+      const region = tz.split('/').pop().replace(/_/g, ' ');
+      const t = document.getElementById('clockTime');
+      const r = document.getElementById('clockRegion');
+      if (t) t.textContent = timeStr;
+      if (r) r.textContent = region;
+    } catch (e) {}
+  }
+  updateVisitorClock();
+  setInterval(updateVisitorClock, 1000);
 
   function updateVisitorClock() {
     try {
