@@ -7,7 +7,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+
 <title>Keyaru | Portfolio</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -81,8 +83,13 @@ body::before {
 }
 
 @keyframes goldShift {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
 }
 
 .header-section p {
@@ -117,6 +124,7 @@ body::before {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
+
 .visitor-clock {
   display: inline-flex;
   align-items: center;
@@ -137,8 +145,6 @@ body::before {
   opacity: .55;
   font-weight: 400;
 }
-
-
 
 .accordion-item {
   margin-bottom: 12px;
@@ -168,11 +174,11 @@ body::before {
   align-items: center;
   justify-content: center;
   transition: transform .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0.55;
+  opacity: .55;
 }
 
 .accordion-btn:hover .arrow {
-  opacity: 0.9;
+  opacity: .9;
 }
 
 .accordion-btn.open .arrow {
@@ -184,7 +190,7 @@ body::before {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows 0.38s ease, opacity 0.3s ease;
+  transition: grid-template-rows .38s ease, opacity .3s ease;
 }
 
 .accordion-panel.open {
@@ -210,10 +216,24 @@ body::before {
   letter-spacing: 1px;
 }
 
+.former-section {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
 @keyframes shineAnimation {
-  0%   { transform: translateX(-350%) skewX(-25deg); }
-  15%  { transform: translateX(350%) skewX(-25deg); }
-  100% { transform: translateX(350%) skewX(-25deg); }
+  0% {
+    transform: translateX(-350%) skewX(-25deg);
+  }
+
+  15% {
+    transform: translateX(350%) skewX(-25deg);
+  }
+
+  100% {
+    transform: translateX(350%) skewX(-25deg);
+  }
 }
 
 .portfolio-card::before {
@@ -231,8 +251,15 @@ body::before {
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(60px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .animate-slide {
@@ -241,7 +268,7 @@ body::before {
 }
 
 .animate-slide.visible {
-  animation: slideInRight 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: slideInRight .45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .avatar-wrapper {
@@ -270,7 +297,7 @@ body::before {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, .8);
   background: rgba(88, 101, 242, 0.15);
   border: 1px solid rgba(88, 101, 242, 0.4);
   border-radius: 14px;
@@ -294,7 +321,7 @@ body::before {
   font-size: 8.5px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: rgba(255, 255, 255, .4);
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 10px;
@@ -302,8 +329,8 @@ body::before {
 }
 
 .now-playing:hover {
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.7);
+  background: rgba(255, 255, 255, .08);
+  color: rgba(255, 255, 255, .7);
 }
 
 .np-bars {
@@ -315,40 +342,60 @@ body::before {
 
 .np-bars span {
   width: 2px;
-  background: rgba(255,255,255,.6);
+  background: rgba(255, 255, 255, .6);
   border-radius: 1px;
   animation: npBounce 1s ease-in-out infinite;
 }
 
-.np-bars span:nth-child(1) { animation-delay: 0s; }
-.np-bars span:nth-child(2) { animation-delay: .2s; }
-.np-bars span:nth-child(3) { animation-delay: .4s; }
+.np-bars span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.np-bars span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.np-bars span:nth-child(3) {
+  animation-delay: .4s;
+}
 
 @keyframes npBounce {
-  0%, 100% { height: 3px; }
-  50%      { height: 10px; }
+  0%, 100% {
+    height: 3px;
+  }
+
+  50% {
+    height: 10px;
+  }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .about-text {
   font-size: 13px;
-  color: rgba(255,255,255,.7);
+  color: rgba(255, 255, 255, .7);
   line-height: 1.75;
   opacity: 0;
 }
 
 .about-text.visible {
-  animation: fadeInUp 0.5s ease forwards;
+  animation: fadeInUp .5s ease forwards;
 }
 
 .project-card {
   position: relative;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid rgba(255, 255, 255, .05);
   border-radius: 14px;
   padding: 14px 16px;
   transition: background .25s, border-color .25s, transform .2s;
@@ -356,8 +403,8 @@ body::before {
 }
 
 .project-card:hover {
-  background: rgba(255,255,255,.07);
-  border-color: rgba(255,255,255,.15);
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .15);
   transform: translateY(-2px);
 }
 
@@ -365,8 +412,18 @@ body::before {
   padding-right: 46px;
 }
 
-.project-card .game-title { font-size: 13px; font-weight: 600; color: white; }
-.project-card .game-role  { font-size: 11px; opacity: .5; margin-top: 4px; line-height: 1.4; }
+.project-card .game-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+.project-card .game-role {
+  font-size: 11px;
+  opacity: .5;
+  margin-top: 4px;
+  line-height: 1.4;
+}
 
 .game-stats {
   display: flex;
@@ -374,7 +431,7 @@ body::before {
   gap: 6px;
   font-size: 10.5px;
   opacity: .75;
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, .8);
   margin-top: 6px;
   white-space: nowrap;
 }
@@ -394,9 +451,17 @@ body::before {
 }
 
 @keyframes pulseDot {
-  0%   { box-shadow: 0 0 10px #22c55e, 0 0 0 0 rgba(34,197,94,.6); }
-  70%  { box-shadow: 0 0 10px #22c55e, 0 0 0 6px rgba(34,197,94,0); }
-  100% { box-shadow: 0 0 10px #22c55e, 0 0 0 0 rgba(34,197,94,0); }
+  0% {
+    box-shadow: 0 0 10px #22c55e, 0 0 0 0 rgba(34, 197, 94, .6);
+  }
+
+  70% {
+    box-shadow: 0 0 10px #22c55e, 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 10px #22c55e, 0 0 0 0 rgba(34, 197, 94, 0);
+  }
 }
 
 .join-discord-btn {
@@ -411,7 +476,7 @@ body::before {
   border-radius: 50%;
   background: rgba(88, 101, 242, 0.15);
   border: 1px solid rgba(88, 101, 242, 0.4);
-  color: rgba(255,255,255,.85);
+  color: rgba(255, 255, 255, .85);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   text-decoration: none;
@@ -430,6 +495,7 @@ body::before {
   height: 13px;
 }
 </style>
+
 </head>
 
 <body>
@@ -437,373 +503,862 @@ body::before {
 <div class="portfolio-card">
 
   <div class="profile-container">
+
     <div class="avatar-wrapper">
-      <img class="profile-img" src="https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png?size=4096" alt="Keyaru">
+      <img
+        class="profile-img"
+        src="https://cdn.discordapp.com/avatars/931547111865085952/a03a042296661e0487c639f766fbfda6.png?size=4096"
+        alt="Keyaru"
+      >
+
       <div id="discord-status-dot"></div>
     </div>
 
-    <a class="discord-btn" href="https://discord.com/users/931547111865085952" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg>Add me on Discord</a>
+    <a
+      class="discord-btn"
+      href="https://discord.com/users/931547111865085952"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+      </svg>
+      Add me on Discord
+    </a>
 
     <div class="now-playing" id="npToggle" role="button" tabindex="0">
-      <span class="np-bars"><span></span><span></span><span></span></span>
+      <span class="np-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
       <span id="npLabel">tap to play</span>
     </div>
 
-    <div id="ytContainer" style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;"></div>
+    <div
+      id="ytContainer"
+      style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;opacity:0;pointer-events:none;"
+    ></div>
+
   </div>
 
+
   <div class="header-section">
+
     <h1>KEYARU</h1>
+
     <p>MODERATOR</p>
+
     <div class="lang-badges">
       <span class="lang-badge">🇹🇷 TR</span>
       <span class="lang-badge">🇬🇧 EN</span>
     </div>
+
     <div class="visitor-clock" id="visitorClock">
       <span id="clockTime">--:--</span>
       <span id="clockRegion"></span>
     </div>
+
   </div>
+
 
   <div class="accordion">
 
     <div class="accordion-item">
+
       <button class="accordion-btn">
         ABOUT ME
+
         <span class="arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </span>
       </button>
+
       <div class="accordion-panel">
+
         <div class="panel-content">
           <p class="about-text">
-            I am an 18-year-old living in Turkey.<br>Currently working as a moderator across multiple Discord servers.
+            I am an 18-year-old living in Turkey.<br>
+            Currently working as a moderator across multiple Discord servers.
           </p>
         </div>
+
       </div>
+
     </div>
 
+
     <div class="accordion-item">
+
       <button class="accordion-btn">
         SKILLS & TOOLS
+
         <span class="arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </span>
       </button>
+
       <div class="accordion-panel">
+
         <div class="panel-content">
+
           <div class="game-list">
+
             <div class="project-card animate-slide">
               <div class="game-title">Security & Moderation</div>
               <div class="game-role">Wick, Carl-bot, Dyno, AutoMod Configuration</div>
             </div>
+
             <div class="project-card animate-slide">
               <div class="game-title">Community Management</div>
               <div class="game-role">Ticket Systems, Giveaways, Event Coordination</div>
             </div>
+
             <div class="project-card animate-slide">
               <div class="game-title">Support</div>
               <div class="game-role">Conflict Resolution, Active Member Assistance</div>
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
 
+
     <div class="accordion-item">
+
       <button class="accordion-btn">
         PORTFOLIO
+
         <span class="arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </span>
       </button>
+
+
       <div class="accordion-panel">
+
         <div class="panel-content">
 
-          <div class="section-title">MODERATOR</div>
-          <div class="game-list">
-            <div class="project-card animate-slide" data-invite="y3yY7Avjsf">
-              <a class="join-discord-btn" href="https://discord.gg/y3yY7Avjsf" target="_blank" rel="noopener" aria-label="Join Anime Horizon Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Anime Horizon</div>
-              <div class="game-role">Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="pcTACbAm42">
-              <a class="join-discord-btn" href="https://discord.gg/pcTACbAm42" target="_blank" rel="noopener" aria-label="Join Survival Homelanders Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Survival Homelanders</div>
-              <div class="game-role">Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="8s9qkhySBU">
-              <a class="join-discord-btn" href="https://discord.gg/8s9qkhySBU" target="_blank" rel="noopener" aria-label="Join Outbreak Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Outbreak</div>
-              <div class="game-role">Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="perpetuity">
-              <a class="join-discord-btn" href="https://discord.gg/perpetuity" target="_blank" rel="noopener" aria-label="Join Perpetuity Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Perpetuity</div>
-              <div class="game-role">Senior Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="animearise">
-              <a class="join-discord-btn" href="https://discord.gg/animearise" target="_blank" rel="noopener" aria-label="Join Anime Arise Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Anime Arise</div>
-              <div class="game-role">Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="haulers">
-              <a class="join-discord-btn" href="https://discord.gg/haulers" target="_blank" rel="noopener" aria-label="Join Haulers Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Haulers</div>
-              <div class="game-role">Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
-            <div class="project-card animate-slide" data-invite="animeparadox">
-              <a class="join-discord-btn" href="https://discord.gg/animeparadox" target="_blank" rel="noopener" aria-label="Join Anime Paradox X Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/></svg></a>
-              <div class="game-title">Anime Paradox X</div>
-              <div class="game-role">Junior Moderator</div>
-              <div class="game-stats">Loading stats...</div>
-            </div>
+          <div class="section-title">
+            MODERATOR
           </div>
+
+
+          <div class="game-list">
+
+
+            <!-- GRIMWORKS -->
+
+            <div class="project-card animate-slide" data-invite="grimworks">
+
+              <a
+                class="join-discord-btn"
+                href="https://discord.gg/grimworks"
+                target="_blank"
+                rel="noopener"
+                aria-label="Join Grimworks Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                </svg>
+              </a>
+
+              <div class="game-title">Grimworks</div>
+
+              <div class="game-role">
+                Trial Moderator
+              </div>
+
+              <div class="game-stats">
+                Loading stats...
+              </div>
+
+            </div>
+
+
+            <!-- SURVIVAL HOMELANDERS -->
+
+            <div class="project-card animate-slide" data-invite="pcTACbAm42">
+
+              <a
+                class="join-discord-btn"
+                href="https://discord.gg/pcTACbAm42"
+                target="_blank"
+                rel="noopener"
+                aria-label="Join Survival Homelanders Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                </svg>
+              </a>
+
+              <div class="game-title">
+                Survival Homelanders
+              </div>
+
+              <div class="game-role">
+                Moderator
+              </div>
+
+              <div class="game-stats">
+                Loading stats...
+              </div>
+
+            </div>
+
+
+            <!-- OUTBREAK -->
+
+            <div class="project-card animate-slide" data-invite="8s9qkhySBU">
+
+              <a
+                class="join-discord-btn"
+                href="https://discord.gg/8s9qkhySBU"
+                target="_blank"
+                rel="noopener"
+                aria-label="Join Outbreak Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                </svg>
+              </a>
+
+              <div class="game-title">
+                Outbreak
+              </div>
+
+              <div class="game-role">
+                Moderator
+              </div>
+
+              <div class="game-stats">
+                Loading stats...
+              </div>
+
+            </div>
+
+
+            <!-- PERPETUITY -->
+
+            <div class="project-card animate-slide" data-invite="perpetuity">
+
+              <a
+                class="join-discord-btn"
+                href="https://discord.gg/perpetuity"
+                target="_blank"
+                rel="noopener"
+                aria-label="Join Perpetuity Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                </svg>
+              </a>
+
+              <div class="game-title">
+                Perpetuity
+              </div>
+
+              <div class="game-role">
+                Senior Moderator
+              </div>
+
+              <div class="game-stats">
+                Loading stats...
+              </div>
+
+            </div>
+
+
+            <!-- ANIME ARISE -->
+
+            <div class="project-card animate-slide" data-invite="animearise">
+
+              <a
+                class="join-discord-btn"
+                href="https://discord.gg/animearise"
+                target="_blank"
+                rel="noopener"
+                aria-label="Join Anime Arise Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                </svg>
+              </a>
+
+              <div class="game-title">
+                Anime Arise
+              </div>
+
+              <div class="game-role">
+                Moderator
+              </div>
+
+              <div class="game-stats">
+                Loading stats...
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- FORMER STAFF -->
+
+          <div class="former-section">
+
+            <div class="section-title">
+              FORMER STAFF
+            </div>
+
+
+            <div class="game-list">
+
+
+              <!-- ANIME HORIZON -->
+
+              <div class="project-card animate-slide" data-invite="y3yY7Avjsf">
+
+                <a
+                  class="join-discord-btn"
+                  href="https://discord.gg/y3yY7Avjsf"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Join Anime Horizon Discord"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                  </svg>
+                </a>
+
+                <div class="game-title">
+                  Anime Horizon
+                </div>
+
+                <div class="game-role">
+                  Former Staff
+                </div>
+
+                <div class="game-stats">
+                  Loading stats...
+                </div>
+
+              </div>
+
+
+              <!-- ANIME PARADOX X -->
+
+              <div class="project-card animate-slide" data-invite="animeparadox">
+
+                <a
+                  class="join-discord-btn"
+                  href="https://discord.gg/animeparadox"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Join Anime Paradox X Discord"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.106c.36.699.772 1.364 1.225 1.994a.077.077 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.094 2.157 2.418 0 1.334-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.094 2.157 2.418 0 1.334-.947 2.419-2.157 2.419z"/>
+                  </svg>
+                </a>
+
+                <div class="game-title">
+                  Anime Paradox X
+                </div>
+
+                <div class="game-role">
+                  Former Staff
+                </div>
+
+                <div class="game-stats">
+                  Loading stats...
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
 
         </div>
+
       </div>
+
     </div>
 
   </div>
+
 </div>
 
+
 <script>
-  const VIDEO_ID = "hmdzniMJOZs";
-  let ytPlayer = null;
-  let audioUnlocked = false;
-  let apiLoaded = false;
-  let fallbackActive = false;
+const VIDEO_ID = "hmdzniMJOZs";
 
-  const npToggle = document.getElementById('npToggle');
-  const npLabel = document.getElementById('npLabel');
-  function setLabel(t) { if (npLabel) npLabel.textContent = t; }
+let ytPlayer = null;
+let audioUnlocked = false;
+let apiLoaded = false;
+let fallbackActive = false;
 
-  function tryUnlockAudio() {
-    if (audioUnlocked || !ytPlayer) return;
-    try {
-      ytPlayer.unMute();
-      ytPlayer.setVolume(80);
-      ytPlayer.playVideo();
-      audioUnlocked = true;
-      setLabel('now playing');
-    } catch (e) {}
+const npToggle = document.getElementById('npToggle');
+const npLabel = document.getElementById('npLabel');
+
+function setLabel(t) {
+  if (npLabel) {
+    npLabel.textContent = t;
+  }
+}
+
+function tryUnlockAudio() {
+  if (audioUnlocked || !ytPlayer) {
+    return;
   }
 
-  ["click", "touchstart", "scroll", "keydown"].forEach(evt => {
-    document.addEventListener(evt, tryUnlockAudio, { passive: true });
-  });
+  try {
+    ytPlayer.unMute();
+    ytPlayer.setVolume(80);
+    ytPlayer.playVideo();
 
-  window.onYouTubeIframeAPIReady = function () {
-    apiLoaded = true;
-    try {
-      ytPlayer = new YT.Player("ytContainer", {
-        videoId: VIDEO_ID,
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          controls: 0,
-          disablekb: 1,
-          modestbranding: 1,
-          enablejsapi: 1,
-          loop: 1,
-          playlist: VIDEO_ID,
-          origin: window.location.origin
+    audioUnlocked = true;
+
+    setLabel('now playing');
+  } catch (e) {}
+}
+
+["click", "touchstart", "scroll", "keydown"].forEach(evt => {
+  document.addEventListener(evt, tryUnlockAudio, {
+    passive: true
+  });
+});
+
+
+window.onYouTubeIframeAPIReady = function () {
+  apiLoaded = true;
+
+  try {
+    ytPlayer = new YT.Player("ytContainer", {
+      videoId: VIDEO_ID,
+
+      playerVars: {
+        autoplay: 1,
+        mute: 1,
+        controls: 0,
+        disablekb: 1,
+        modestbranding: 1,
+        enablejsapi: 1,
+        loop: 1,
+        playlist: VIDEO_ID,
+        origin: window.location.origin
+      },
+
+      events: {
+        onReady: function (e) {
+          try {
+            e.target.setVolume(80);
+            e.target.playVideo();
+          } catch (_) {}
+
+          tryUnlockAudio();
         },
-        events: {
-          onReady: function (e) {
+
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.ENDED) {
             try {
-              e.target.setVolume(80);
-              e.target.playVideo();
+              ytPlayer.seekTo(0);
+              ytPlayer.playVideo();
             } catch (_) {}
-            tryUnlockAudio();
-          },
-          onStateChange: function (e) {
-            if (e.data === YT.PlayerState.ENDED) {
-              try { ytPlayer.seekTo(0); ytPlayer.playVideo(); } catch(_) {}
-            }
-            if (e.data === YT.PlayerState.PAUSED && audioUnlocked) {
-              try { ytPlayer.playVideo(); } catch(_) {}
-            }
-          },
-          onError: function () {
-            activateFallbackEmbed();
           }
+
+          if (
+            e.data === YT.PlayerState.PAUSED &&
+            audioUnlocked
+          ) {
+            try {
+              ytPlayer.playVideo();
+            } catch (_) {}
+          }
+        },
+
+        onError: function () {
+          activateFallbackEmbed();
         }
-      });
-    } catch (e) {
-      activateFallbackEmbed();
-    }
-  };
-
-  const tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
-  tag.onerror = activateFallbackEmbed;
-  document.head.appendChild(tag);
-
-  setTimeout(function () {
-    if (!apiLoaded) activateFallbackEmbed();
-  }, 4000);
-
-  function activateFallbackEmbed() {
-    if (fallbackActive) return;
-    fallbackActive = true;
-    const c = document.getElementById('ytContainer');
-    if (!c) return;
-    try {
-      c.innerHTML = '<iframe width="1" height="1" src="https://www.youtube.com/embed/' + VIDEO_ID +
-        '?autoplay=1&mute=1&loop=1&playlist=' + VIDEO_ID +
-        '&controls=0&disablekb=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>';
-    } catch (_) {}
-    setLabel('tap to play');
-  }
-
-  function manualToggle() {
-    if (ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
-      try {
-        const state = ytPlayer.getPlayerState();
-        if (state === 1 && audioUnlocked) {
-          ytPlayer.pauseVideo();
-          audioUnlocked = false;
-          setLabel('paused');
-        } else {
-          ytPlayer.unMute();
-          ytPlayer.setVolume(80);
-          ytPlayer.playVideo();
-          audioUnlocked = true;
-          setLabel('now playing');
-        }
-      } catch (e) {}
-    } else {
-      activateFallbackEmbed();
-    }
-  }
-
-  if (npToggle) {
-    npToggle.addEventListener('click', manualToggle);
-    npToggle.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') manualToggle();
-    });
-  }
-
-  document.querySelectorAll(".accordion-btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const panel = this.nextElementSibling;
-      const isOpen = panel.classList.contains("open");
-
-      if (isOpen) {
-        panel.classList.remove("open");
-        this.classList.remove("open");
-        panel.querySelectorAll(".animate-slide").forEach(el => el.classList.remove("visible"));
-        panel.querySelectorAll(".about-text").forEach(el => el.classList.remove("visible"));
-      } else {
-        panel.classList.add("open");
-        this.classList.add("open");
-        panel.querySelectorAll(".animate-slide").forEach((el, i) => {
-          el.classList.remove("visible");
-          setTimeout(() => el.classList.add("visible"), 80 + i * 100);
-        });
-        panel.querySelectorAll(".about-text").forEach(el => {
-          el.classList.remove("visible");
-          setTimeout(() => el.classList.add("visible"), 80);
-        });
       }
     });
+
+  } catch (e) {
+    activateFallbackEmbed();
+  }
+};
+
+
+const tag = document.createElement("script");
+
+tag.src = "https://www.youtube.com/iframe_api";
+
+tag.onerror = activateFallbackEmbed;
+
+document.head.appendChild(tag);
+
+
+setTimeout(function () {
+  if (!apiLoaded) {
+    activateFallbackEmbed();
+  }
+}, 4000);
+
+
+function activateFallbackEmbed() {
+  if (fallbackActive) {
+    return;
+  }
+
+  fallbackActive = true;
+
+  const c = document.getElementById('ytContainer');
+
+  if (!c) {
+    return;
+  }
+
+  try {
+    c.innerHTML =
+      '<iframe width="1" height="1" src="https://www.youtube.com/embed/' +
+      VIDEO_ID +
+      '?autoplay=1&mute=1&loop=1&playlist=' +
+      VIDEO_ID +
+      '&controls=0&disablekb=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>';
+  } catch (_) {}
+
+  setLabel('tap to play');
+}
+
+
+function manualToggle() {
+  if (
+    ytPlayer &&
+    typeof ytPlayer.getPlayerState === 'function'
+  ) {
+    try {
+      const state = ytPlayer.getPlayerState();
+
+      if (
+        state === 1 &&
+        audioUnlocked
+      ) {
+        ytPlayer.pauseVideo();
+
+        audioUnlocked = false;
+
+        setLabel('paused');
+
+      } else {
+        ytPlayer.unMute();
+
+        ytPlayer.setVolume(80);
+
+        ytPlayer.playVideo();
+
+        audioUnlocked = true;
+
+        setLabel('now playing');
+      }
+
+    } catch (e) {}
+
+  } else {
+    activateFallbackEmbed();
+  }
+}
+
+
+if (npToggle) {
+  npToggle.addEventListener('click', manualToggle);
+
+  npToggle.addEventListener('keydown', function (e) {
+    if (
+      e.key === 'Enter' ||
+      e.key === ' '
+    ) {
+      e.preventDefault();
+      manualToggle();
+    }
+  });
+}
+
+
+document.querySelectorAll(".accordion-btn").forEach(btn => {
+  btn.addEventListener("click", function () {
+    const panel = this.nextElementSibling;
+    const isOpen = panel.classList.contains("open");
+
+    if (isOpen) {
+      panel.classList.remove("open");
+      this.classList.remove("open");
+
+      panel.querySelectorAll(".animate-slide").forEach(el => {
+        el.classList.remove("visible");
+      });
+
+      panel.querySelectorAll(".about-text").forEach(el => {
+        el.classList.remove("visible");
+      });
+
+    } else {
+      panel.classList.add("open");
+      this.classList.add("open");
+
+      panel.querySelectorAll(".animate-slide").forEach((el, i) => {
+        el.classList.remove("visible");
+
+        setTimeout(() => {
+          el.classList.add("visible");
+        }, 80 + i * 100);
+      });
+
+      panel.querySelectorAll(".about-text").forEach(el => {
+        el.classList.remove("visible");
+
+        setTimeout(() => {
+          el.classList.add("visible");
+        }, 80);
+      });
+    }
+  });
+});
+
+
+const DISCORD_ID = "931547111865085952";
+
+const dot = document.getElementById("discord-status-dot");
+
+let lanyardBusy = false;
+
+
+function updateDiscordStatus() {
+  if (lanyardBusy) {
+    return;
+  }
+
+  lanyardBusy = true;
+
+  fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)
+    .then(r => r.json())
+
+    .then(data => {
+      if (!data.success) {
+        return;
+      }
+
+      const colors = {
+        online: "#43b581",
+        idle: "#faa61a",
+        dnd: "#f04747"
+      };
+
+      const color =
+        colors[data.data.discord_status] ||
+        "#747f8d";
+
+      dot.style.backgroundColor = color;
+
+      dot.style.boxShadow =
+        `0 0 8px ${color}`;
+    })
+
+    .catch(() => {})
+
+    .finally(() => {
+      lanyardBusy = false;
+    });
+}
+
+
+updateDiscordStatus();
+
+setInterval(updateDiscordStatus, 30000);
+
+
+function formatCount(n) {
+  if (n >= 1000) {
+    return (n / 1000)
+      .toFixed(1)
+      .replace(/\.0$/, "") + "k";
+  }
+
+  return String(n);
+}
+
+
+async function loadServerStats() {
+  const cards = Array.from(
+    document.querySelectorAll(
+      '.project-card[data-invite]'
+    )
+  );
+
+  const userSvg = `
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="opacity:0.8; margin-right:4px; vertical-align:-2px;"
+    >
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+  `;
+
+
+  const fetchPromises = cards.map(async card => {
+    const code = card.getAttribute('data-invite');
+
+    const statsEl = card.querySelector('.game-stats');
+
+    try {
+      const r = await fetch(
+        `https://discord.com/api/v9/invites/${code}?with_counts=true`
+      );
+
+      if (!r.ok) {
+        throw new Error("bad response");
+      }
+
+      const data = await r.json();
+
+      const onlineCount =
+        data.approximate_presence_count ?? 0;
+
+      const totalCount =
+        data.approximate_member_count ?? 0;
+
+      statsEl.innerHTML =
+        `<span class="pulse-dot"></span>` +
+        `${formatCount(onlineCount)} Online` +
+        `<span class="stat-sep">•</span>` +
+        `${userSvg}` +
+        `${formatCount(totalCount)} Members`;
+
+      return {
+        card,
+        online: onlineCount
+      };
+
+    } catch (e) {
+      statsEl.textContent =
+        "Stats unavailable";
+
+      return {
+        card,
+        online: -1
+      };
+    }
   });
 
-  const DISCORD_ID = "931547111865085952";
-  const dot = document.getElementById("discord-status-dot");
-  let lanyardBusy = false;
 
-  function updateDiscordStatus() {
-    if (lanyardBusy) return;
-    lanyardBusy = true;
-    fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)
-      .then(r => r.json())
-      .then(data => {
-        if (!data.success) return;
-        const colors = { online: "#43b581", idle: "#faa61a", dnd: "#f04747" };
-        const color = colors[data.data.discord_status] || "#747f8d";
-        dot.style.backgroundColor = color;
-        dot.style.boxShadow = `0 0 8px ${color}`;
-      })
-      .catch(() => {})
-      .finally(() => { lanyardBusy = false; });
-  }
-  updateDiscordStatus();
-  setInterval(updateDiscordStatus, 30000);
+  const results =
+    await Promise.all(fetchPromises);
 
-  function formatCount(n) {
-    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
-    return String(n);
-  }
 
-  async function loadServerStats() {
-    const cards = Array.from(document.querySelectorAll('.project-card[data-invite]'));
-    const userSvg = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.8; margin-right:4px; vertical-align:-2px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`;
+  const parentGroups =
+    new Map();
 
-    const fetchPromises = cards.map(async (card) => {
-      const code = card.getAttribute('data-invite');
-      const statsEl = card.querySelector('.game-stats');
 
-      try {
-        const r = await fetch(`https://discord.com/api/v9/invites/${code}?with_counts=true`);
-        if (!r.ok) throw new Error("bad response");
-        const data = await r.json();
+  results.forEach(res => {
+    const parent =
+      res.card.parentElement;
 
-        const onlineCount = data.approximate_presence_count ?? 0;
-        const totalCount = data.approximate_member_count ?? 0;
+    if (!parentGroups.has(parent)) {
+      parentGroups.set(parent, []);
+    }
 
-        statsEl.innerHTML = `<span class="pulse-dot"></span>${formatCount(onlineCount)} Online<span class="stat-sep">•</span>${userSvg}${formatCount(totalCount)} Members`;
-        return { card, online: onlineCount };
-      } catch (e) {
-        statsEl.textContent = "Stats unavailable";
-        return { card, online: -1 };
-      }
+    parentGroups
+      .get(parent)
+      .push(res);
+  });
+
+
+  parentGroups.forEach((group, parent) => {
+    group.sort(
+      (a, b) =>
+        b.online - a.online
+    );
+
+    group.forEach(item => {
+      parent.appendChild(item.card);
     });
+  });
+}
 
-    const results = await Promise.all(fetchPromises);
 
-    const parentGroups = new Map();
-    results.forEach(res => {
-      const parent = res.card.parentElement;
-      if (!parentGroups.has(parent)) {
-        parentGroups.set(parent, []);
-      }
-      parentGroups.get(parent).push(res);
-    });
+function updateVisitorClock() {
+  try {
+    const now =
+      new Date();
 
-    parentGroups.forEach((group, parent) => {
-      group.sort((a, b) => b.online - a.online);
-      group.forEach(item => {
-        parent.appendChild(item.card);
-      });
-    });
-  }
+    const tz =
+      Intl
+        .DateTimeFormat()
+        .resolvedOptions()
+        .timeZone || 'UTC';
 
-  function updateVisitorClock() {
-    try {
-      const now = new Date();
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-      const timeStr = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
-      const region = tz.split('/').pop().replace(/_/g, ' ');
-      const t = document.getElementById('clockTime');
-      const r = document.getElementById('clockRegion');
-      if (t) t.textContent = timeStr;
-      if (r) r.textContent = region;
-    } catch (e) {}
-  }
-  updateVisitorClock();
-  setInterval(updateVisitorClock, 1000);
+    const timeStr =
+      now.toLocaleTimeString(
+        undefined,
+        {
+          hour: '2-digit',
+          minute: '2-digit'
+        }
+      );
 
-  loadServerStats();
+    const region =
+      tz
+        .split('/')
+        .pop()
+        .replace(/_/g, ' ');
 
+    const t =
+      document.getElementById('clockTime');
+
+    const r =
+      document.getElementById('clockRegion');
+
+    if (t) {
+      t.textContent = timeStr;
+    }
+
+    if (r) {
+      r.textContent = region;
+    }
+
+  } catch (e) {}
+}
+
+
+updateVisitorClock();
+
+setInterval(
+  updateVisitorClock,
+  1000
+);
+
+loadServerStats();
 </script>
+
 </body>
 </html>
